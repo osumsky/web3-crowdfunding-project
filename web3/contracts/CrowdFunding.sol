@@ -23,7 +23,7 @@ contract CrowdFunding {
         Campaign storage campaign = campaigns[numberOfCampaigns];
 
         // If deadline <= currentTimeStamp - throw error
-        require(campaign.deadline > block.timestamp , "The deadline should ba a date in the future");
+        require(_deadline > block.timestamp , "The deadline should ba a date in the future");
 
         campaign.owner = _owner;
         campaign.title = _title;
@@ -34,7 +34,6 @@ contract CrowdFunding {
         campaign.image = _image;
 
         numberOfCampaigns++;
-
         return numberOfCampaigns - 1; // Campaign ID
     }
 
