@@ -7,45 +7,56 @@ import {
   withdraw,
 } from '../assets';
 
-type NavLinkType = {
-  name: string;
-  imgUrl: string;
+export type NavLinkType = {
+  name: NavLinkName;
+  imageUrl: string;
   link: string;
   disabled?: boolean;
 };
 
+export enum NavLinkName {
+  Dashbord = 'dashboard',
+  Campaign = 'campaign',
+  Payment = 'payment',
+  Withdraw = 'withdraw',
+  Profile = 'profile',
+  Logout = 'logout',
+}
+
 export const navlinks: Array<NavLinkType> = [
   {
-    name: 'dashboard',
-    imgUrl: dashboard,
+    name: NavLinkName.Dashbord,
+    imageUrl: dashboard,
     link: '/',
   },
   {
-    name: 'campaign',
-    imgUrl: createCampaign,
+    name: NavLinkName.Campaign,
+    imageUrl: createCampaign,
     link: '/create-campaign',
   },
   {
-    name: 'payment',
-    imgUrl: payment,
-    link: '/',
+    name: NavLinkName.Payment,
+    imageUrl: payment,
+    link: '/payment',
     disabled: true,
   },
   {
-    name: 'withdraw',
-    imgUrl: withdraw,
-    link: '/',
+    name: NavLinkName.Withdraw,
+    imageUrl: withdraw,
+    link: '/withdraw',
     disabled: true,
   },
   {
-    name: 'profile',
-    imgUrl: profile,
+    name: NavLinkName.Profile,
+    imageUrl: profile,
     link: '/profile',
+
   },
   {
-    name: 'logout',
-    imgUrl: logout,
-    link: '/',
+    name: NavLinkName.Logout,
+    imageUrl: logout,
+    link: '/logout',
     disabled: true,
   },
 ];
+

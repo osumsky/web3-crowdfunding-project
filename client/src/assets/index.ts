@@ -4,6 +4,8 @@ import logout from './logout.svg';
 import payment from './payment.svg';
 import profile from './profile.svg';
 import withdraw from './withdraw.svg';
+import logo from './logo.svg';
+import sun from './sun.svg';
 
 export {
   createCampaign,
@@ -12,4 +14,6 @@ export {
   payment,
   profile,
   withdraw,
+  logo,
+  sun
 };
