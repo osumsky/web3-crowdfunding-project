@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     // Navbar container
-    <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6 bg-white">
+    <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
       {/* Search container */}
       <div className="lg:flex flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
         <input
@@ -74,7 +74,7 @@ const Navbar = () => {
           src={menu}
           className="w-[34px] h-[34px] object-contain cursor-pointer"
           onClick={() => {
-            setToggleDrawer(!toggleDrawer);
+            setToggleDrawer((prevState) => !prevState);
           }}
         />
         <div
@@ -95,10 +95,47 @@ const Navbar = () => {
                   navigate(linkItem.link);
                 }}
               >
-                {linkItem.name}
+                <img
+                  src={linkItem.imageUrl}
+                  className={`h-[24px] w-[24px] object-contain ${
+                    isActive === linkItem.name ? 'grayscale-0' : 'grayscale'
+                  }`}
+                />
+
+                <p
+                  className={`ml-[20px] font-epilogue font-semibold text-[14px] capitalize ${
+                    isActive === linkItem.name
+                      ? 'text-[#1dc071]'
+                      : 'text-[#808191]'
+                  }`}
+                >
+                  {linkItem.name}
+                </p>
               </li>
             ))}
           </ul>
+
+          <div className="flex mx-4">
+            <CustomButton
+              btnType="button"
+              title={address ? 'Create a campaign' : 'Connect'}
+              styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+              handleClick={() => {
+                if (address) {
+                  // First find index of Campaing in Array and then take a link
+                  navigate(
+                    navlinks[
+                      navlinks.findIndex(
+                        (item) => item.name === NavLinkName.Campaign
+                      )
+                    ].link
+                  );
+                } else {
+                  ConnectWallet();
+                }
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
