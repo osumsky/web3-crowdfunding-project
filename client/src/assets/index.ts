@@ -9,6 +9,7 @@ import sun from './sun.svg';
 import menu from './menu.svg';
 import search from './search.svg';
 import thirdweb from './thirdweb.png';
+import money from './money.svg';
 
 
 export {
@@ -22,5 +23,6 @@ export {
   sun,
   menu,
   search,
-  thirdweb
+  thirdweb,
+  money
 };
