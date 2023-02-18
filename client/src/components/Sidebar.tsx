@@ -20,7 +20,6 @@ const Icon: React.FC<IconPropsType> = ({
   disabled,
   handleClick,
 }) => {
-
   return (
     <div
       className={`w-[48px] h-[48px] rounded-[10px] ${
@@ -29,14 +28,10 @@ const Icon: React.FC<IconPropsType> = ({
       ${!disabled && 'cursor-pointer'} ${styles}`}
       onClick={handleClick}
     >
-      {!isActive ? (
-        <img src={imageUrl} className="w-1/2 h-1/2" />
-      ) : (
-        <img
-          src={imageUrl}
-          className={`w-1/2 h-1/2 ${isActive !== name && 'grayscale'}`}
-        />
-      )}
+      <img
+        src={imageUrl}
+        className={`w-1/2 h-1/2 ${isActive !== name && 'grayscale'}`}
+      />
     </div>
   );
 };
@@ -67,7 +62,7 @@ const Sidebar = () => {
             />
           ))}
         </div>
-        <Icon styles="bg-[#1c1c24] shadow-secondary" imageUrl={sun} disabled/>
+        <Icon styles="bg-[#1c1c24] shadow-secondary" imageUrl={sun} disabled />
       </div>
     </div>
   );
