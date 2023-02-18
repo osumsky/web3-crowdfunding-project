@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomButton } from './';
 import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks, NavLinkName, NavLinkType } from '../constants';
-import { serialize } from '@ethersproject/transactions';
+import { getLinkByNavLinkName } from '../utils';
 
 const address: string = '0xD81a77D1F0785ea0799DD4F6266C8C3Ae886dee3';
 
@@ -37,14 +37,7 @@ const Navbar = () => {
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
             if (address) {
-              // First find index of Campaing in Array and then take a link
-              navigate(
-                navlinks[
-                  navlinks.findIndex(
-                    (item) => item.name === NavLinkName.Campaign
-                  )
-                ].link
-              );
+              navigate(getLinkByNavLinkName(NavLinkName.Campaign));
             } else {
               ConnectWallet();
             }
@@ -122,14 +115,7 @@ const Navbar = () => {
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
                 if (address) {
-                  // First find index of Campaing in Array and then take a link
-                  navigate(
-                    navlinks[
-                      navlinks.findIndex(
-                        (item) => item.name === NavLinkName.Campaign
-                      )
-                    ].link
-                  );
+                  navigate(getLinkByNavLinkName(NavLinkName.Campaign));
                 } else {
                   ConnectWallet();
                 }

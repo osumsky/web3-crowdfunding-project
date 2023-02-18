@@ -1,7 +1,7 @@
-import React from 'react';
+
 
 const CreateCampaign = () => {
-  return <div>CreateCampaign</div>;
+  return <div className='bg-white'>CreateCampaign</div>;
 };
 
 export default CreateCampaign;

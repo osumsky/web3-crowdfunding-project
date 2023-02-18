@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import {Navbar, Sidebar} from './components';
+import { Navbar, Sidebar } from './components';
+import { NavLinkName } from './constants';
 import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';
+import { getLinkByNavLinkName } from './utils';
 
 const App = () => {
   return (
@@ -13,8 +15,16 @@ const App = () => {
         <div className="flex-1 max-sm:w-full max-w-[1280] mx-auto sm:pr:5">
           <Navbar />
           <Routes>
-            <Route path="/" element={null} />
-            <Route path="" element={null} />
+            <Route path="/" element={<Home />} />
+            <Route
+              path={getLinkByNavLinkName(NavLinkName.Profile)}
+              element={<Profile />}
+            />
+            <Route
+              path={getLinkByNavLinkName(NavLinkName.Campaign)}
+              element={<CreateCampaign />}
+            />
+            <Route path="/campaing-details/:id" element={<CampaignDetails />} />
           </Routes>
         </div>
       </div>
