@@ -1,10 +1,10 @@
 import React, { MouseEventHandler } from 'react';
 
 type CustomBottomType = {
-  btnType: 'button';
+  btnType: 'button' | 'submit';
   title: string;
   styles: string;
-  handleClick: React.MouseEventHandler;
+  handleClick?: React.MouseEventHandler;
 };
 
 const CustomBottom: React.FC<CustomBottomType> = ({
