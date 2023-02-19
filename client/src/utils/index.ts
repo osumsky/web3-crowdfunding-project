@@ -14,6 +14,7 @@ export const calculateBarPercentage = (
   return Math.round((amountCollected * 100) / target);
 };
 
+// Check if the link of image exists
 export const checkIfImage = (url: string, cb: Function): void => {
   const image = new Image();
   image.src = url;

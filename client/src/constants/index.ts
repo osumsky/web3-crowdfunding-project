@@ -60,3 +60,4 @@ export const navlinks: Array<NavLinkType> = [
   },
 ];
 
+export const CONTRACT_ADRESS: string = '0xA02aAadd2967018A3f4F3Ee6c723B9721b26d3b6';
