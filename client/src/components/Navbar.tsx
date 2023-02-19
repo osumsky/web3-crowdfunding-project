@@ -4,15 +4,15 @@ import { CustomButton } from './';
 import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks, NavLinkName, NavLinkType } from '../constants';
 import { getLinkByNavLinkName } from '../utils';
+import { useStateContext } from '../context';
 
-const address: string = '0xD81a77D1F0785ea0799DD4F6266C8C3Ae886dee3';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsAcive] = useState(NavLinkName.Dashbord);
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const ConnectWallet = () => null;
-
+  const {connectWallet, address} = useStateContext();
+  
   return (
     // Navbar container
     <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
@@ -39,7 +39,7 @@ const Navbar = () => {
             if (address) {
               navigate(getLinkByNavLinkName(NavLinkName.Campaign));
             } else {
-              ConnectWallet();
+              connectWallet();
             }
           }}
         />
@@ -61,7 +61,7 @@ const Navbar = () => {
       <div className="sm:hidden flex justify-between items-center relative">
         {/* image container */}
         <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-          <img src={thirdweb} className="w-[60%] h-[60%] object-contain" />
+          <img src={logo} className="w-[60%] h-[60%] object-contain" />
         </div>
         <img
           src={menu}
@@ -117,7 +117,7 @@ const Navbar = () => {
                 if (address) {
                   navigate(getLinkByNavLinkName(NavLinkName.Campaign));
                 } else {
-                  ConnectWallet();
+                  connectWallet();
                 }
               }}
             />

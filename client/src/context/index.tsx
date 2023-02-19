@@ -12,12 +12,14 @@ import { FormType } from '../pages/CreateCampaign';
 type ContextValueType = {
   address: string | undefined;
   contract: any;
+  connectWallet: any;
   createCampaign: Function;
 };
 
 const defaultContext: ContextValueType = {
   address: undefined,
   contract: undefined,
+  connectWallet: undefined,
   createCampaign: () => {},
 };
 
@@ -34,7 +36,7 @@ export const StateContextProvider: React.FC = ({
   );
 
   const address = useAddress();
-  const connect = useMetamask();
+  const connectWallet = useMetamask();
 
   const publishCampaign = async (form: FormType) => {
     try {
@@ -54,7 +56,7 @@ export const StateContextProvider: React.FC = ({
 
   return (
     <StateContext.Provider
-      value={{ address, contract, createCampaign: publishCampaign }}
+      value={{ address, contract, connectWallet, createCampaign: publishCampaign }}
     >
       {children}
     </StateContext.Provider>
