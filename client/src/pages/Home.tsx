@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { DisplayCampaigns } from '../components';
 import { useStateContext } from '../context';
-import CampaignDetails from './CampaignDetails';
 import { CampaignDetailsType } from './CreateCampaign';
 
-export type ExtraCampaignsDetails = CampaignDetailsType & {
+export type ExtraCampaignsDetails = (CampaignDetailsType & {
   owner: string;
   amountCollected: number;
-};
-
-
+}) ;
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +24,13 @@ const Home = () => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
 
-  return <div className="bg-white">Home</div>;
+  return (
+    <DisplayCampaigns
+      title="All Campaigns"
+      isLoading={isLoading}
+      campaigns={campaigns}
+    />
+  );
 };
 
 export default Home;
