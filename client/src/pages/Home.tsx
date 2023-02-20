@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useStateContext } from '../context';
+import CampaignDetails from './CampaignDetails';
+import { CampaignDetailsType } from './CreateCampaign';
+
+export type ExtraCampaignsDetails = CampaignDetailsType & {
+  owner: string;
+  amountCollected: number;
+};
+
+
 
 const Home = () => {
-  return <div className='bg-white'>Home</div>;
+  const [isLoading, setIsLoading] = useState(false);
+  const [campaigns, setCampaigns] = useState([]);
+  const { address, contract, getCampaigns } = useStateContext();
+
+  const fetchCampaigns = async () => {
+    setIsLoading(true);
+    const data = await getCampaigns();
+    setCampaigns(data);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (contract) fetchCampaigns();
+  }, [address, contract]);
+
+  return <div className="bg-white">Home</div>;
 };
 
 export default Home;

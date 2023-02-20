@@ -15,7 +15,7 @@ enum FieldName {
   image = 'image',
 }
 
-export type FormType = {
+export type CampaignDetailsType = {
   [FieldName.name]: string;
   [FieldName.title]: string;
   [FieldName.description]: string;
@@ -24,7 +24,7 @@ export type FormType = {
   [FieldName.image]: string;
 };
 
-const defaultForm: FormType = {
+const defaultForm: CampaignDetailsType = {
   name: '',
   title: '',
   description: '',
