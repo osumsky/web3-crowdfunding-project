@@ -23,7 +23,7 @@ const App = () => {
               path={getLinkByNavLinkName(NavLinkName.Campaign)}
               element={<CreateCampaign />}
             />
-            <Route path="/campaing-details/:id" element={<CampaignDetails />} />
+            <Route path="/campaign-details/:id" element={<CampaignDetails />} />
           </Routes>
         </div>
       </div>

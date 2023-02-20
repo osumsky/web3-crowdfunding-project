@@ -21,7 +21,7 @@ const Navbar = () => {
         <input
           type="text"
           placeholder="Search fro campaigns"
-          className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[$4b5264] text-white bg-transparent outline-nome"
+          className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[$4b5264] text-white bg-transparent outline-none mr-2"
         />
         {/* Search image container */}
         <div className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer">
@@ -39,7 +39,7 @@ const Navbar = () => {
             if (address) {
               navigate(getLinkByNavLinkName(NavLinkName.Campaign));
             } else {
-              connectWallet();
+              connectWallet?.();
             }
           }}
         />
@@ -117,7 +117,7 @@ const Navbar = () => {
                 if (address) {
                   navigate(getLinkByNavLinkName(NavLinkName.Campaign));
                 } else {
-                  connectWallet();
+                  connectWallet?.();
                 }
               }}
             />

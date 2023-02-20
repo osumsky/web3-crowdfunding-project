@@ -5,18 +5,21 @@ import {
   useMetamask,
   useContractWrite,
 } from '@thirdweb-dev/react';
-import { CONTRACT_ADRESS } from '../constants';
+import { CROWD_PLATFORM_CONTRACT_ADRESS } from '../constants';
 
 import { CampaignDetailsType } from '../pages/CreateCampaign';
-import { ethers } from 'ethers';
+import { BaseContract, ethers } from 'ethers';
 import { ExtraCampaignsDetails } from '../pages/Home';
+import { SmartContract } from '@thirdweb-dev/sdk';
+import { ResultType } from '@remix-run/router/dist/utils';
 
 type ContextValueType = {
   address: string | undefined;
-  contract: any;
-  connectWallet: any;
+  contract: SmartContract<BaseContract> | undefined;
+  connectWallet: ReturnType<typeof useMetamask> | undefined;
   createCampaign: Function;
-  getCampaigns: Function;
+  getAllCampaigns: Function;
+  getUserCampaigns: Function;
 };
 
 const defaultContext: ContextValueType = {
@@ -24,7 +27,8 @@ const defaultContext: ContextValueType = {
   contract: undefined,
   connectWallet: undefined,
   createCampaign: () => {},
-  getCampaigns: () => [],
+  getAllCampaigns: () => [],
+  getUserCampaigns: () => [],
 };
 
 const StateContext = createContext<ContextValueType>(defaultContext);
@@ -34,7 +38,7 @@ export const useStateContext = (): ContextValueType => useContext(StateContext);
 export const StateContextProvider: React.FC = ({
   children,
 }: React.PropsWithChildren) => {
-  const { contract } = useContract(CONTRACT_ADRESS);
+  const { contract } = useContract(CROWD_PLATFORM_CONTRACT_ADRESS);
   const { mutateAsync: createCampaignOnSC } = useContractWrite(
     contract,
     'createCampaign'
@@ -59,21 +63,23 @@ export const StateContextProvider: React.FC = ({
     }
   };
 
-  
-  
-  const getCampaigns = async (): Promise<Array<any>> => {
+  const getAllCampaigns = async (): Promise<Array<ExtraCampaignsDetails>> => {
     try {
       const campaigns = await contract?.call('getCampaigns');
-      const parsedCampaigns = campaigns.map((campaign: ExtraCampaignsDetails, index: number) =>({
-        owner: campaign.owner,
-        title: campaign.title,
-        description: campaign.description,
-        target: ethers.utils.formatEther(campaign.target.toString()),
-        deadline: Number(campaign.deadline),
-        amountCollected: ethers.utils.formatEther(campaign.amountCollected.toString()),
-        image: campaign.image,
-        pId: index
-      }))
+      const parsedCampaigns = campaigns.map(
+        (campaign: ExtraCampaignsDetails, index: number) => ({
+          owner: campaign.owner,
+          title: campaign.title,
+          description: campaign.description,
+          target: ethers.utils.formatEther(campaign.target.toString()),
+          deadline: Number(campaign.deadline),
+          amountCollected: ethers.utils.formatEther(
+            campaign.amountCollected.toString()
+          ),
+          image: campaign.image,
+          pId: index,
+        })
+      );
       console.info('contract call successs', parsedCampaigns);
       return parsedCampaigns;
     } catch (err) {
@@ -82,9 +88,17 @@ export const StateContextProvider: React.FC = ({
     }
   };
 
+  const getUserCampaigns = async (): Promise<Array<ExtraCampaignsDetails>> => {
+    const allCampanigns = await getAllCampaigns();
+    const filtredCampaigns = allCampanigns.filter(
+      (campanign) => campanign.owner === address
+    );
+    return filtredCampaigns;
+  };
+
   return (
     <StateContext.Provider
-      value={{ address, contract, connectWallet, createCampaign, getCampaigns }}
+      value={{ address, contract, connectWallet, createCampaign, getAllCampaigns, getUserCampaigns }}
     >
       {children}
     </StateContext.Provider>

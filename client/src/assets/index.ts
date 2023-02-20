@@ -11,7 +11,7 @@ import search from './search.svg';
 import thirdweb from './thirdweb.png';
 import money from './money.svg';
 import loader from './loader.svg';
-
+import tagType from './tag-type.svg';
 
 export {
   createCampaign,
@@ -26,5 +26,6 @@ export {
   search,
   thirdweb,
   money,
-  loader
+  loader,
+  tagType
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ExtraCampaignsDetails } from '../pages/Home';
 import { loader } from '../assets';
+import FundCard from './FundCard';
 
 type DisplayCampaignsType = {
   title: string;
@@ -14,7 +15,13 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
   isLoading,
   campaigns,
 }) => {
+  
   const navigate = useNavigate();
+
+  const handleNavigate = (campaign: ExtraCampaignsDetails) => {
+    navigate(`/campaign-details/${campaign.title}`, {state: campaign});
+  }
+
   return (
     <div>
       <h1 className="font-epilogue font-semibold text-white text-left">
@@ -24,10 +31,20 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
         {isLoading && (
           <img src={loader} className="w-[100px] h-[100px] object-contain" />
         )}
-        
-        { !isLoading && campaigns.length === 0 && (<p className=>You have not created any campaigns</p>)
-          campaigns.map(() => <></>)
-        }
+
+        {!isLoading && campaigns.length === 0 && (
+          <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818181]">
+            You have not created any campaigns
+          </p>
+        )}
+
+        {!isLoading &&
+          campaigns.length > 0 &&
+          campaigns.map((campaign) => (
+            <FundCard key={campaign.pId} {...campaign}
+            handleClick={()=> handleNavigate(campaign)}
+            />
+          ))}
       </div>
     </div>
   );
