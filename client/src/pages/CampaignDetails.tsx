@@ -1,27 +1,35 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
-import { CustomButton } from '../components';
+import { CustomButton, Loader } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { thirdweb, loader } from '../assets';
-import { ExtraCampaignsDetails } from './Home';
 import CountBox from '../components/CountBox';
+import { ExtraCampaignsDetails } from './Profile';
+
+type LocationState = {
+  state: ExtraCampaignsDetails;
+}
+
+export type DonationType = {
+  donator: string;
+  donation: string;
+};
 
 const CampaignDetails: React.FC = () => {
   const { makeDonate, getDonations, contract, address } = useStateContext();
-  const { state } = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [amount, setAmount] = useState('');
-  const [donators, setDonators] = useState([]);
+  const { state } = useLocation() as LocationState;
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [amount, setAmount] = useState<string>('');
+  const [donators, setDonators] = useState<Array<DonationType>>([]);
 
   const remaingingDays = daysLeft(Number(state.deadline));
 
   const fetchDonators = async () => {
-    console.log('pId: ', state.pId);
     const data = await getDonations(state.pId);
-    console.log('donators: ', data);
     setDonators(data);
   };
 
@@ -32,15 +40,13 @@ const CampaignDetails: React.FC = () => {
   const handleDonate = async () => {
     setIsLoading(true);
     const result = await makeDonate(state.pId, amount);
-    console.log('Result of donate: ', result);
+    navigate('/');
     setIsLoading(false);
   };
 
   return (
     <div>
-      {isLoading && (
-        <img src={loader} className="w-[100px] h-[100px] object-contain" />
-      )}
+      {isLoading && <Loader />}
 
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[12px]">
         <div className="flex-1 flex-col">
@@ -53,7 +59,7 @@ const CampaignDetails: React.FC = () => {
               className="absolute h-full bg-[#4acd8d]"
               style={{
                 width: `${calculateBarPercentage(
-                  state.target,
+                  Number(state.target),
                   state.amountCollected
                 )}%`,
                 maxWidth: '100%',
@@ -113,7 +119,7 @@ const CampaignDetails: React.FC = () => {
             </h4>
             <div className="mt-[20px] flex flex-col gap-4">
               {donators.length > 0 ? (
-                donators.map((item, index) => (
+                donators.map((item, index:number) => (
                   <div
                     key={`${item.donator}-${index}`}
                     className="flex justify-between items-center gap-4"

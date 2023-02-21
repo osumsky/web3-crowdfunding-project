@@ -9,8 +9,9 @@ import { CROWD_PLATFORM_CONTRACT_ADRESS } from '../constants';
 
 import { CampaignDetailsType } from '../pages/CreateCampaign';
 import { BaseContract, ethers } from 'ethers';
-import { ExtraCampaignsDetails } from '../pages/Home';
+import { ExtraCampaignsDetails } from '../pages/Profile';
 import { SmartContract } from '@thirdweb-dev/sdk';
+import { DonationType } from '../pages/CampaignDetails';
 
 type ContextValueType = {
   address: string | undefined;
@@ -104,7 +105,8 @@ export const StateContextProvider: React.FC = ({
     return data;
   };
 
-  const getDonations = async (pId: number): Promise<any> => {
+
+  const getDonations = async (pId: number): Promise<Array<DonationType>> => {
     const donations = await contract?.call('getDonators', pId);
        // [0] - Donators, [1] - Donations
     const numberOfDonations = donations[0].length;

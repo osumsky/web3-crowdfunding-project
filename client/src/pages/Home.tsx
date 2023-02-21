@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { DisplayCampaigns } from '../components';
+import { DisplayCampaigns, Loader } from '../components';
 import { useStateContext } from '../context';
-import { CampaignDetailsType } from './CreateCampaign';
-
-export type ExtraCampaignsDetails = CampaignDetailsType & {
-  owner: string;
-  amountCollected: number;
-  pId: number;
-};
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,11 +23,13 @@ const Home = () => {
   }, [address, contract]);
 
   return (
-    <DisplayCampaigns
-      title="All Campaigns"
-      isLoading={isLoading}
-      campaigns={campaigns}
-    />
+    <>
+      <DisplayCampaigns
+        title="All Campaigns"
+        isLoading={isLoading}
+        campaigns={campaigns}
+      />
+    </>
   );
 };
 

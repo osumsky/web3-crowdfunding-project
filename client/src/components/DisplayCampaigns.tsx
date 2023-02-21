@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ExtraCampaignsDetails } from '../pages/Home';
+import { ExtraCampaignsDetails } from '../pages/Profile';
 import { loader } from '../assets';
 import FundCard from './FundCard';
+import Loader from './Loader';
 
 type DisplayCampaignsType = {
   title: string;
@@ -15,12 +16,11 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
   isLoading,
   campaigns,
 }) => {
-  
   const navigate = useNavigate();
 
   const handleNavigate = (campaign: ExtraCampaignsDetails) => {
-    navigate(`/campaign-details/${campaign.title}`, {state: campaign});
-  }
+    navigate(`/campaign-details/${campaign.title}`, { state: campaign });
+  };
 
   return (
     <div>
@@ -28,9 +28,7 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
         {title} ({campaigns.length})
       </h1>
       <div className="flex flex-wrap mt-[20px] gap-[28px]">
-        {isLoading && (
-          <img src={loader} className="w-[100px] h-[100px] object-contain" />
-        )}
+        {isLoading && <Loader />}
 
         {!isLoading && campaigns.length === 0 && (
           <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818181]">
@@ -41,8 +39,10 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
         {!isLoading &&
           campaigns.length > 0 &&
           campaigns.map((campaign) => (
-            <FundCard key={campaign.pId} {...campaign}
-            handleClick={()=> handleNavigate(campaign)}
+            <FundCard
+              key={campaign.pId}
+              {...campaign}
+              handleClick={() => handleNavigate(campaign)}
             />
           ))}
       </div>
