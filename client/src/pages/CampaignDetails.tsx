@@ -10,7 +10,7 @@ import { ExtraCampaignsDetails } from './Home';
 import CountBox from '../components/CountBox';
 
 const CampaignDetails: React.FC = () => {
-  const { contract, address } = useStateContext();
+  const { makeDonate, getDonations, contract, address } = useStateContext();
   const { state } = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
@@ -18,7 +18,23 @@ const CampaignDetails: React.FC = () => {
 
   const remaingingDays = daysLeft(Number(state.deadline));
 
-  const handleDonate = async () => {};
+  const fetchDonators = async () => {
+    console.log('pId: ', state.pId);
+    const data = await getDonations(state.pId);
+    console.log('donators: ', data);
+    setDonators(data);
+  };
+
+  useEffect(() => {
+    if (contract) fetchDonators();
+  }, [contract, address]);
+
+  const handleDonate = async () => {
+    setIsLoading(true);
+    const result = await makeDonate(state.pId, amount);
+    console.log('Result of donate: ', result);
+    setIsLoading(false);
+  };
 
   return (
     <div>
@@ -56,11 +72,7 @@ const CampaignDetails: React.FC = () => {
         </div>
       </div>
 
-
-
       <div className="mt-[60px] flex lg:flex-row flex-col gap-5">
-        
-        
         <div className="flex-[2] flex flex-col gap-[40px]">
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
@@ -101,7 +113,19 @@ const CampaignDetails: React.FC = () => {
             </h4>
             <div className="mt-[20px] flex flex-col gap-4">
               {donators.length > 0 ? (
-                donators.map((item, index) => <div key={index}>DONATOR</div>)
+                donators.map((item, index) => (
+                  <div
+                    key={`${item.donator}-${index}`}
+                    className="flex justify-between items-center gap-4"
+                  >
+                    <p className="font-epilogue font-normal text-[16px] text-[#b2b3bd] leading-[24px] break-all">
+                      {index + 1}. {item.donator}
+                    </p>
+                    <p className="font-epilogue font-normal text-[16px] text-[#b2b3bd] leading-[24px] break-all">
+                      {`${item.donation} ETH`}
+                    </p>
+                  </div>
+                ))
               ) : (
                 <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
                   No donators yet. Be the first!
@@ -122,8 +146,8 @@ const CampaignDetails: React.FC = () => {
             <div className="mt-[30px]">
               <input
                 type="number"
-                placeholder="ETH 0.1"
-                step="0.01"
+                placeholder="ETH 0.0001"
+                step="0.0001"
                 className="w-full py-[10px] sm:px-[20px] px-[16px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white focus:border-white
               text-[18px] leading-[30px] placeholder:text-[#4b5264] rounded-[10px]"
                 value={amount}

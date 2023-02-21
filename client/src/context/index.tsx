@@ -11,7 +11,6 @@ import { CampaignDetailsType } from '../pages/CreateCampaign';
 import { BaseContract, ethers } from 'ethers';
 import { ExtraCampaignsDetails } from '../pages/Home';
 import { SmartContract } from '@thirdweb-dev/sdk';
-import { ResultType } from '@remix-run/router/dist/utils';
 
 type ContextValueType = {
   address: string | undefined;
@@ -20,6 +19,8 @@ type ContextValueType = {
   createCampaign: Function;
   getAllCampaigns: Function;
   getUserCampaigns: Function;
+  makeDonate: Function;
+  getDonations: Function;
 };
 
 const defaultContext: ContextValueType = {
@@ -29,6 +30,8 @@ const defaultContext: ContextValueType = {
   createCampaign: () => {},
   getAllCampaigns: () => [],
   getUserCampaigns: () => [],
+  makeDonate: () => {},
+  getDonations: () => [],
 };
 
 const StateContext = createContext<ContextValueType>(defaultContext);
@@ -96,9 +99,37 @@ export const StateContextProvider: React.FC = ({
     return filtredCampaigns;
   };
 
+  const makeDonate = async (pId: number, amount: string): Promise<any> => {
+    const data = await contract?.call('donateToCampaign', pId, {value: ethers.utils.parseEther(amount)});
+    return data;
+  };
+
+  const getDonations = async (pId: number): Promise<any> => {
+    const donations = await contract?.call('getDonators', pId);
+       // [0] - Donators, [1] - Donations
+    const numberOfDonations = donations[0].length;
+    const parseDonations = [];
+    for (let i = 0; i < numberOfDonations; i++) {
+      parseDonations.push({
+        donator: donations[0][i],
+        donation: ethers.utils.formatEther(donations[1][i].toString()),
+      });
+    }
+    return parseDonations;
+  };
+
   return (
     <StateContext.Provider
-      value={{ address, contract, connectWallet, createCampaign, getAllCampaigns, getUserCampaigns }}
+      value={{
+        address,
+        contract,
+        connectWallet,
+        createCampaign,
+        getAllCampaigns,
+        getUserCampaigns,
+        makeDonate,
+        getDonations,
+      }}
     >
       {children}
     </StateContext.Provider>
