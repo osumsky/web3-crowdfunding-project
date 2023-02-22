@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { DisplayCampaigns, Loader } from '../components';
+import { useEffect, useState } from 'react';
+import { DisplayCampaigns } from '../components';
 import { useStateContext } from '../context';
+import { ExtraCampaignsDetails } from './Profile';
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [campaigns, setCampaigns] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [campaigns, setCampaigns] = useState<Array<ExtraCampaignsDetails>>([]);
   const { address, contract, getAllCampaigns } = useStateContext();
 
   const fetchCampaigns = async () => {
@@ -23,13 +24,11 @@ const Home = () => {
   }, [address, contract]);
 
   return (
-    <>
-      <DisplayCampaigns
-        title="All Campaigns"
-        isLoading={isLoading}
-        campaigns={campaigns}
-      />
-    </>
+    <DisplayCampaigns
+      title="All Campaigns"
+      isLoading={isLoading}
+      campaigns={campaigns}
+    />
   );
 };
 

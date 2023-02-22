@@ -9,6 +9,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+  // FIXME: depracated propety
   <ThirdwebProvider desiredChainId={ChainId.Goerli}>
     <BrowserRouter>
       <StateContextProvider>

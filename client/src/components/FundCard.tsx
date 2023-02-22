@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExtraCampaignsDetails } from '../pages/Home';
+import { ExtraCampaignsDetails } from '../pages/Profile';
 import { tagType, thirdweb } from '../assets';
 import { daysLeft } from '../utils';
 

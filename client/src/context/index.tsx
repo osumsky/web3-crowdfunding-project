@@ -39,9 +39,9 @@ const StateContext = createContext<ContextValueType>(defaultContext);
 export const useStateContext = (): ContextValueType => useContext(StateContext);
 
 // ...OnSC / ...FromSC - on/from smart contract
-export const StateContextProvider: React.FC = ({
+export const StateContextProvider: React.FC<React.PropsWithChildren> = ({
   children,
-}: React.PropsWithChildren) => {
+}) => {
   const { contract } = useContract(CROWD_PLATFORM_CONTRACT_ADRESS);
   const { mutateAsync: createCampaignOnSC } = useContractWrite(
     contract,
@@ -100,15 +100,15 @@ export const StateContextProvider: React.FC = ({
     return filtredCampaigns;
   };
 
-  const makeDonate = async (pId: number, amount: string): Promise<any> => {
-    const data = await contract?.call('donateToCampaign', pId, {value: ethers.utils.parseEther(amount)});
-    return data;
+  const makeDonate = async (pId: number, amount: string): Promise<void> => {
+    await contract?.call('donateToCampaign', pId, {
+      value: ethers.utils.parseEther(amount),
+    });
   };
-
 
   const getDonations = async (pId: number): Promise<Array<DonationType>> => {
     const donations = await contract?.call('getDonators', pId);
-       // [0] - Donators, [1] - Donations
+    // [0] - Donators, [1] - Donations
     const numberOfDonations = donations[0].length;
     const parseDonations = [];
     for (let i = 0; i < numberOfDonations; i++) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DisplayCampaigns } from '../components';
 import { useStateContext } from '../context';
 import { CampaignDetailsType } from './CreateCampaign';
@@ -10,8 +10,8 @@ export type ExtraCampaignsDetails = CampaignDetailsType & {
 };
 
 const Profile = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [campaigns, setCampaigns] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [campaigns, setCampaigns] = useState<Array<ExtraCampaignsDetails>>([]);
   const { address, contract, getUserCampaigns } = useStateContext();
 
   const fetchCampaigns = async () => {

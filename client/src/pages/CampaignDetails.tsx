@@ -1,24 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ethers } from 'ethers';
 
 import { useStateContext } from '../context';
 import { CustomButton, Loader } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { thirdweb, loader } from '../assets';
+import { thirdweb } from '../assets';
 import CountBox from '../components/CountBox';
 import { ExtraCampaignsDetails } from './Profile';
 
 type LocationState = {
   state: ExtraCampaignsDetails;
-}
+};
 
 export type DonationType = {
   donator: string;
   donation: string;
 };
 
-const CampaignDetails: React.FC = () => {
+const CampaignDetails = () => {
   const { makeDonate, getDonations, contract, address } = useStateContext();
   const { state } = useLocation() as LocationState;
   const navigate = useNavigate();
@@ -119,7 +118,7 @@ const CampaignDetails: React.FC = () => {
             </h4>
             <div className="mt-[20px] flex flex-col gap-4">
               {donators.length > 0 ? (
-                donators.map((item, index:number) => (
+                donators.map((item, index: number) => (
                   <div
                     key={`${item.donator}-${index}`}
                     className="flex justify-between items-center gap-4"

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ExtraCampaignsDetails } from '../pages/Profile';
-import { loader } from '../assets';
 import FundCard from './FundCard';
 import Loader from './Loader';
 

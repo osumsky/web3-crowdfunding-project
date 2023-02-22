@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 
 type CustomBottomType = {
   btnType: 'button' | 'submit';

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 
 type FormFieldType = {
   labelName: string;
@@ -6,7 +6,9 @@ type FormFieldType = {
   inputType?: string;
   isTextArea: boolean;
   value: string;
-  handleChange: React.ChangeEventHandler<any>;
+  handleChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
 };
 
 const FormField: React.FC<FormFieldType> = ({
