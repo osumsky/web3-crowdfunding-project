@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useStateContext } from '../context';
 import { CustomButton, Loader } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { thirdweb } from '../assets';
+import { thirdweb } from '../assets/images';
 import CountBox from '../components/CountBox';
 import { ExtraCampaignsDetails } from './Profile';
 
@@ -21,8 +21,8 @@ const CampaignDetails = () => {
   const { makeDonate, getDonations, contract, address } = useStateContext();
   const { state } = useLocation() as LocationState;
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [amount, setAmount] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [amount, setAmount] = useState('');
   const [donators, setDonators] = useState<Array<DonationType>>([]);
 
   const remaingingDays = daysLeft(Number(state.deadline));

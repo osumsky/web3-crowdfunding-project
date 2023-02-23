@@ -4,7 +4,7 @@ type CustomBottomType = {
   btnType: 'button' | 'submit';
   title: string;
   styles: string;
-  handleClick?: React.MouseEventHandler;
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const CustomBottom: React.FC<CustomBottomType> = ({

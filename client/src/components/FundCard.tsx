@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExtraCampaignsDetails } from '../pages/Profile';
-import { tagType, thirdweb } from '../assets';
+import { tagType, thirdweb } from '../assets/images';
 import { daysLeft } from '../utils';
 
 type FundCampaignsDetails = ExtraCampaignsDetails & {

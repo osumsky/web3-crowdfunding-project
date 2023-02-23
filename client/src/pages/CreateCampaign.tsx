@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
-import { money, loader } from '../assets';
+import { money } from '../assets/images';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
 import { useStateContext } from '../context';
@@ -35,8 +35,8 @@ const defaultForm: CampaignDetailsType = {
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
-  const [isSaving, setIsSaving] = useState(false);
-  const [form, setForm] = useState(defaultForm);
+  const [isSaving, setIsSaving] = useState<boolean>(false);
+  const [form, setForm] = useState<CampaignDetailsType>(defaultForm);
   const { createCampaign } = useStateContext();
 
   const handleSubmit = async (e: React.SyntheticEvent): Promise<any> => {
@@ -59,7 +59,7 @@ const CreateCampaign = () => {
 
   const handleFormFieldChange = (
     fieldName: FieldName,
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
     setForm({ ...form, [fieldName]: e.target.value });
   };

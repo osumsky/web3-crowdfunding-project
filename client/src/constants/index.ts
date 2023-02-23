@@ -5,7 +5,7 @@ import {
   payment,
   profile,
   withdraw,
-} from '../assets';
+} from '../assets/images';
 
 export type NavLinkType = {
   name: NavLinkName;

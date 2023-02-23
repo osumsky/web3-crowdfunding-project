@@ -4,6 +4,7 @@ import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 import App from './App';
 import './index.css';
 import { StateContextProvider } from './context';
+import './i18nextConf';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

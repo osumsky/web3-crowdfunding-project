@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomButton } from './';
-import { logo, menu, search, thirdweb } from '../assets';
+import { logo, menu, search, thirdweb } from '../assets/images';
 import { navlinks, NavLinkName, NavLinkType } from '../constants';
 import { getLinkByNavLinkName } from '../utils';
 import { useStateContext } from '../context';
-
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsAcive] = useState(NavLinkName.Dashbord);
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const {connectWallet, address} = useStateContext();
-  
+  const { connectWallet, address } = useStateContext();
+  const { t, i18n } = useTranslation();
+
   return (
     // Navbar container
     <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
@@ -33,7 +34,7 @@ const Navbar = () => {
       <div className="sm:flex hidden flex-row justify-end items-center gap-4">
         <CustomButton
           btnType="button"
-          title={address ? 'Create a campaign' : 'Connect'}
+          title={address ? t('campaign_creation') : t('connect')}
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
             if (address) {
