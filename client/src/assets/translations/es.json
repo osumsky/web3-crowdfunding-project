@@ -16,5 +16,16 @@
   "end_date": "Fecha final",
   "campaign_image": "Imagen de la campaña",
   "image_url": "Coloque la URL de la imagen de su campaña",
-  "submit_campaign": "Crear nueva campaña"
+  "submit_campaign": "Crear nueva campaña",
+  "raised_of": "Recibido de",
+  "days_left": "Días restantes",
+
+  "total_backers": "Patrocinadores totales",
+  "creator": "Creador",
+  "donators": "Donantes",
+  "no_donators": "Aún no hay donantes. ¡Sé el primero!",
+  "fund": "Financiar",
+  "fund_campaign": "Financiar la campaña",
+  "back_it": "Apóyala porque crees en élla.",
+  "support_project": "Apoya el proyecto sin recompensa, solo porque te habla."
 }

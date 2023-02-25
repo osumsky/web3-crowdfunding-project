@@ -2,6 +2,7 @@ import React from 'react';
 import { ExtraCampaignsDetails } from '../pages/Profile';
 import { tagType, thirdweb } from '../assets/images';
 import { daysLeft } from '../utils';
+import { useTranslation } from 'react-i18next';
 
 type FundCampaignsDetails = ExtraCampaignsDetails & {
   handleClick: React.MouseEventHandler<HTMLDivElement>;
@@ -17,6 +18,7 @@ const FundCard: React.FC<FundCampaignsDetails> = ({
   image,
   handleClick,
 }) => {
+  const { t } = useTranslation();
   const remainingDays = daysLeft(Number(deadline));
 
   return (
@@ -52,19 +54,19 @@ const FundCard: React.FC<FundCampaignsDetails> = ({
         {/* Amount collected + days left  */}
         <div className="flex justify-between flex-wrap mt-[16px] gap-2">
           <div className="flex flex-col">
-            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
+            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px] text-center">
               {amountCollected}
             </h4>
             <p className="mt-[4px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] truncate sm:max-w-[120px]">
-              Raised of {target}
+              {t('raised_of')} {target}
             </p>
           </div>
           <div className="flex flex-col">
-            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
+            <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px] text-center">
               {remainingDays}
             </h4>
             <p className="mt-[4px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] truncate sm:max-w-[120px]">
-              Days left
+              {t('days_left')}
             </p>
           </div>
         </div>

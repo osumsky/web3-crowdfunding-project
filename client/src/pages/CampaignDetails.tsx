@@ -7,6 +7,7 @@ import { calculateBarPercentage, daysLeft } from '../utils';
 import { thirdweb } from '../assets/images';
 import CountBox from '../components/CountBox';
 import { ExtraCampaignsDetails } from './Profile';
+import { useTranslation } from 'react-i18next';
 
 type LocationState = {
   state: ExtraCampaignsDetails;
@@ -24,6 +25,8 @@ const CampaignDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
   const [donators, setDonators] = useState<Array<DonationType>>([]);
+
+  const { t } = useTranslation();
 
   const remaingingDays = daysLeft(Number(state.deadline));
 
@@ -67,13 +70,13 @@ const CampaignDetails = () => {
           </div>
         </div>
 
-        <div className="flex md:w-[150px] w-full flex-wrap justify-between gap-[32px]">
-          <CountBox title="Days Left" value={remaingingDays} />
+        <div className="flex md:w-[150px] w-full flex-wrap justify-between ">
+          <CountBox title={t('days_left')} value={remaingingDays} />
           <CountBox
-            title={`Raised of ${state.target}`}
+            title={`${t('raised_of')} ${state.target}`}
             value={state.amountCollected}
           />
-          <CountBox title="Total Backers" value={donators.length} />
+          <CountBox title={t('total_backers')} value={donators.length} />
         </div>
       </div>
 
@@ -81,7 +84,7 @@ const CampaignDetails = () => {
         <div className="flex-[2] flex flex-col gap-[40px]">
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
-              Creator
+              {t('creator')}
             </h4>
             <div className="mt-[20px] flex flex-row items-center flex-wrap gap-[14px]">
               <div className="w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer">
@@ -103,7 +106,7 @@ const CampaignDetails = () => {
 
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
-              Story
+              {t('story')}
             </h4>
             <div className="mt-[20px]">
               <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
@@ -114,7 +117,7 @@ const CampaignDetails = () => {
 
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
-              Donators
+              {t('donators')}
             </h4>
             <div className="mt-[20px] flex flex-col gap-4">
               {donators.length > 0 ? (
@@ -133,7 +136,7 @@ const CampaignDetails = () => {
                 ))
               ) : (
                 <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
-                  No donators yet. Be the first!
+                  {t('no_donators')}
                 </p>
               )}
             </div>
@@ -142,11 +145,11 @@ const CampaignDetails = () => {
 
         <div className="flex-1">
           <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
-            Fund
+            {t('fund')}
           </h4>
           <div className="mt-[20px] flex flex-col p-4 bg-[#1c1c24] rounded-[10px]">
             <p className="font-epologue font-medium text-[20px] leading-[30px] text-center text-[#808191]">
-              Fund the campaign
+              {t('fund_campaign')}
             </p>
             <div className="mt-[30px]">
               <input
@@ -161,16 +164,15 @@ const CampaignDetails = () => {
 
               <div className="my-[20px] p-4 bg-[#131313] rounded-[10px]">
                 <h4 className="font-epilogue font-semibold text-[14px] leading-[20px] text-white">
-                  Back it because you believe in it.
+                  {t('back_it')}
                 </h4>
                 <p className="mt-[20px] font-epilogue font-normal leading-[20px] text-[#808191]">
-                  Support the project for no reward, just because it speaks to
-                  you.
+                  {t('support_project')}
                 </p>
               </div>
               <CustomButton
                 btnType="button"
-                title="Fund Campaign"
+                title={t('fund_campaign')}
                 styles="w-full bg-[#8c6dfd]"
                 handleClick={handleDonate}
               />
