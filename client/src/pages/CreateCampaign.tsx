@@ -5,6 +5,7 @@ import { money } from '../assets/images';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
 import { useStateContext } from '../context';
+import { useTranslation } from 'react-i18next';
 
 enum FieldName {
   name = 'name',
@@ -38,6 +39,7 @@ const CreateCampaign = () => {
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [form, setForm] = useState<CampaignDetailsType>(defaultForm);
   const { createCampaign } = useStateContext();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.SyntheticEvent): Promise<any> => {
     e.preventDefault();
@@ -70,7 +72,7 @@ const CreateCampaign = () => {
 
       <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
         <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">
-          Start a Campaign
+          {t('start_campaign')}
         </h1>
       </div>
 
@@ -80,7 +82,7 @@ const CreateCampaign = () => {
       >
         <div className="flex flex-wrap gap-[40px]">
           <FormField
-            labelName="Your Name *"
+            labelName={`${t('your_name')} *`}
             placeholder="John Doe"
             inputType="text"
             value={form.name}
@@ -88,8 +90,8 @@ const CreateCampaign = () => {
             isTextArea={false}
           />
           <FormField
-            labelName="Campaign Title *"
-            placeholder="Write a title"
+            labelName={`${t('campaign_title')} *`}
+            placeholder={t('write_title')}
             inputType="text"
             value={form.title}
             handleChange={(e) => handleFormFieldChange(FieldName.title, e)}
@@ -98,8 +100,8 @@ const CreateCampaign = () => {
         </div>
 
         <FormField
-          labelName="Story *"
-          placeholder="Write your story"
+          labelName={`${t('story')} *`}
+          placeholder={t('write_story')}
           value={form.description}
           handleChange={(e) => handleFormFieldChange(FieldName.description, e)}
           isTextArea={true}
@@ -109,13 +111,13 @@ const CreateCampaign = () => {
         <div className="w-full flex justify-start items-center rounded-[10px] bg-[#8c6dfd] p-4">
           <img src={money} className="w-[40px] h-[40px] object-contain" />
           <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">
-            You will get 100% of the raised amount
+            {t('reward')}
           </h4>
         </div>
 
         <div className="flex flex-wrap gap-[40px]">
           <FormField
-            labelName="Target *"
+            labelName={`${t('target')} *`}
             placeholder="ETH 0.5"
             inputType="number"
             value={form.target}
@@ -123,16 +125,16 @@ const CreateCampaign = () => {
             isTextArea={false}
           />
           <FormField
-            labelName="End Date *"
-            placeholder="End Date"
+            labelName={`${t('end_date')} *`}
+            placeholder=""
             inputType="date"
             value={form.deadline}
             handleChange={(e) => handleFormFieldChange(FieldName.deadline, e)}
             isTextArea={false}
           />
           <FormField
-            labelName="Campaign image *"
-            placeholder="Place image URL of your campaign"
+            labelName={`${t('campaign_image')} *`}
+            placeholder={t('image_url')}
             inputType="url"
             value={form.image}
             handleChange={(e) => handleFormFieldChange(FieldName.image, e)}
@@ -144,7 +146,7 @@ const CreateCampaign = () => {
         <div className="flex justify-center items-center mt-[40px]">
           <CustomButton
             btnType="submit"
-            title="Submit new campaign"
+            title={t('submit_campaign')}
             styles="bg-[#1dc071]"
           />
         </div>

@@ -1,4 +1,20 @@
 {
   "campaign_creation": "Create a campaign",
-  "connect": "Connect wallet"
+  "connect": "Connect wallet",
+  "search_for": "Search for campaigns",
+  "all_campaigns": "All Campaigns",
+  "please_wait": "Please wait ...",
+  "no_campaigns": "You have not created any campaigns",
+  "start_campaign": "Start a Campaign",
+  "your_name": "Your Name",
+  "campaign_title": "Campaign Title",
+  "write_title": "Write a title",
+  "story": "Story",
+  "write_story": "Write your story",
+  "reward": "You will get 100% of the raised amount",
+  "target": "Target",
+  "end_date": "End Date",
+  "campaign_image": "Campaign image",
+  "image_url": "Coloque la URL de la imagen de su campaña",
+  "submit_campaign": "Submit new campaign"
 }

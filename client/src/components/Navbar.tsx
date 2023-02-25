@@ -6,6 +6,7 @@ import { navlinks, NavLinkName, NavLinkType } from '../constants';
 import { getLinkByNavLinkName } from '../utils';
 import { useStateContext } from '../context';
 import { useTranslation } from 'react-i18next';
+import { availableLanguages, LanguageType } from '../i18nextConf';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,6 +15,11 @@ const Navbar = () => {
   const { connectWallet, address } = useStateContext();
   const { t, i18n } = useTranslation();
 
+  const handleLangSelect = (e: any): void => {
+    const newLang = e.target.value;
+    i18n.changeLanguage(newLang);
+  };
+
   return (
     // Navbar container
     <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
@@ -21,7 +27,7 @@ const Navbar = () => {
       <div className="lg:flex flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
         <input
           type="text"
-          placeholder="Search fro campaigns"
+          placeholder={t('search_for')}
           className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[$4b5264] text-white bg-transparent outline-none mr-2"
         />
         {/* Search image container */}
@@ -44,6 +50,33 @@ const Navbar = () => {
             }
           }}
         />
+
+        {/* Language selection */}
+        <div>
+          <select
+            className="h-[52px] w-[52px] p-2 rounded-full text-transparent appearance-none"
+            style={{
+              backgroundImage: `url(${
+                availableLanguages[i18n.resolvedLanguage as keyof LanguageType]
+                  .image
+              })`,
+              backgroundSize: 'contain',
+            }}
+            onChange={handleLangSelect}
+            defaultValue={i18n.resolvedLanguage}
+          >
+            {Object.keys(availableLanguages).map((langKey) => (
+              <option
+                key={langKey}
+                value={langKey}
+                className="bg-[#818181] text-black
+                checked:bg-[#13131a] checked:text-[#818181]"
+              >
+                {availableLanguages[langKey as keyof LanguageType].originalName}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <Link
           to={
@@ -112,7 +145,7 @@ const Navbar = () => {
           <div className="flex mx-4">
             <CustomButton
               btnType="button"
-              title={address ? 'Create a campaign' : 'Connect'}
+              title={address ? t('campaign_creation') : t('connect')}
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
                 if (address) {

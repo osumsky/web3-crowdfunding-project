@@ -6,30 +6,41 @@ import ukrainianTranslation from './assets/translations/uk.json';
 
 // !!! DO NOT FORGET TO IMPORT this file in App.tsx or main.tsx
 
-enum LanguagesType {
+// the elements like placeholder (input fields) dont accept null
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    returnNull: false;
+  }
+}
+
+export enum Languages {
   EN = 'en',
   UK = 'uk',
   ES = 'es',
 }
 
-const languages = {
-  [LanguagesType.EN]: 'English',
-  [LanguagesType.UK]: 'Українська',
-  [LanguagesType.ES]: 'Español',
+export type LanguageType = {
+  [key in Languages]: { originalName: string; image: string };
+};
+export const availableLanguages: LanguageType = {
+  [Languages.EN]: { originalName: 'English', image: '/src/assets/images/en.png' },
+  [Languages.UK]: { originalName: 'Українська', image: '/src/assets/images/uk.png' },
+  [Languages.ES]: { originalName: 'Español', image: '/src/assets/images/es.png' },
 };
 
 i18n.use(initReactI18next).init({
-  fallbackLng: LanguagesType.EN,
-  lng: LanguagesType.UK,
+  fallbackLng: Languages.EN,
+  lng: Languages.ES,
+  returnNull: false,
 
   resources: {
-    [LanguagesType.EN]: {
+    [Languages.EN]: {
       translation: englishTranslation,
     },
-    [LanguagesType.ES]: {
+    [Languages.ES]: {
       translation: spanishTranslation,
     },
-    [LanguagesType.UK]: {
+    [Languages.UK]: {
       translation: ukrainianTranslation,
     },
   },

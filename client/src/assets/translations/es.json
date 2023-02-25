@@ -1,4 +1,20 @@
 {
   "campaign_creation": "Crear una campaña",
-  "connect": "Conectar la cartera"
+  "connect": "Conectar la cartera",
+  "search_for": "Buscar campañas",
+  "all_campaigns": "Todas las campañas",
+  "please_wait": "Espere por favor ...",
+  "no_campaigns": "No has creado ninguna campañas",
+  "start_campaign": "Iniciar una campaña",
+  "your_name": "Tu nombre",
+  "campaign_title": "Título de la campaña",
+  "write_title": "Escribe un titulo",
+  "story": "Historia",
+  "write_story": "Escribe tu historia",
+  "reward": "Recibirás el 100% de la cantidad recaudada",
+  "target": "Objetivo",
+  "end_date": "Fecha final",
+  "campaign_image": "Imagen de la campaña",
+  "image_url": "Coloque la URL de la imagen de su campaña",
+  "submit_campaign": "Crear nueva campaña"
 }

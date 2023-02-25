@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ExtraCampaignsDetails } from '../pages/Profile';
 import FundCard from './FundCard';
@@ -15,6 +16,8 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
   isLoading,
   campaigns,
 }) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const handleNavigate = (campaign: ExtraCampaignsDetails) => {
@@ -31,7 +34,7 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
 
         {!isLoading && campaigns.length === 0 && (
           <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818181]">
-            You have not created any campaigns
+            {t('no_campaigns')}
           </p>
         )}
 
