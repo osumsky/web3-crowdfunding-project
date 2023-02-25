@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomButton } from './';
-import { logo, menu, search, thirdweb } from '../assets/images';
+import { menu, search, thirdweb } from '../assets/images';
 import { navlinks, NavLinkName, NavLinkType } from '../constants';
 import { getLinkByNavLinkName } from '../utils';
 import { useStateContext } from '../context';
@@ -16,15 +16,14 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
 
   const handleLangSelect = (e: any): void => {
-    const newLang = e.target.value;
-    i18n.changeLanguage(newLang);
+    i18n.changeLanguage(e.target.value);
   };
 
   return (
     // Navbar container
-    <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
+    <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6" >
       {/* Search container */}
-      <div className="lg:flex flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
+      <div className="lg:flex flex flex-row md:max-w-[458px] w-full py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
         <input
           type="text"
           placeholder={t('search_for')}
@@ -51,10 +50,25 @@ const Navbar = () => {
           }}
         />
 
+        <Link
+          to={
+            navlinks[
+              navlinks.findIndex((item) => item.name === NavLinkName.Profile)
+            ].link
+          }
+        >
+          <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center">
+            <img src={thirdweb} className="w-[60%] h-[60%] object-contain" />
+          </div>
+        </Link>
+      </div>
+
+      {/* Small screen navigation */}
+      <div className="sm:hidden flex justify-between items-center relative">
         {/* Language selection */}
         <div>
           <select
-            className="h-[52px] w-[52px] p-2 rounded-full text-transparent appearance-none"
+            className="w-[40px] h-[40px] px-2 rounded-full text-transparent appearance-none cursor-pointer"
             style={{
               backgroundImage: `url(${
                 availableLanguages[i18n.resolvedLanguage as keyof LanguageType]
@@ -76,26 +90,6 @@ const Navbar = () => {
               </option>
             ))}
           </select>
-        </div>
-
-        <Link
-          to={
-            navlinks[
-              navlinks.findIndex((item) => item.name === NavLinkName.Profile)
-            ].link
-          }
-        >
-          <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center">
-            <img src={thirdweb} className="w-[60%] h-[60%] object-contain" />
-          </div>
-        </Link>
-      </div>
-
-      {/* Small screen navigation */}
-      <div className="sm:hidden flex justify-between items-center relative">
-        {/* image container */}
-        <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-          <img src={logo} className="w-[60%] h-[60%] object-contain" />
         </div>
         <img
           src={menu}

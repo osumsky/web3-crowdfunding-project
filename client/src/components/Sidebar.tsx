@@ -2,6 +2,8 @@ import { MouseEventHandler, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { navlinks, NavLinkName, NavLinkType } from '../constants';
 import { logo, sun } from '../assets/images';
+import { availableLanguages, LanguageType } from '../i18nextConf';
+import { useTranslation } from 'react-i18next';
 
 type IconPropsType = {
   styles?: string;
@@ -40,16 +42,39 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(NavLinkName.Dashbord);
 
+  const { i18n } = useTranslation();
+  const handleLangSelect = (e: any): void => {
+    i18n.changeLanguage(e.target.value);
+  };
+
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
-      <Link to="/">
-        <Icon
-          styles="w-[52px] h-[52px] bg-[#2c2f32]"
-          imageUrl={logo}
-          handleClick={() => null}
-        />
-      </Link>
-
+      {/* Language selection */}
+      <div>
+        <select
+          className="w-[40px] h-[40px] px-2 rounded-full text-transparent appearance-none cursor-pointer"
+          style={{
+            backgroundImage: `url(${
+              availableLanguages[i18n.resolvedLanguage as keyof LanguageType]
+                .image
+            })`,
+            backgroundSize: 'contain',
+          }}
+          onChange={handleLangSelect}
+          defaultValue={i18n.resolvedLanguage}
+        >
+          {Object.keys(availableLanguages).map((langKey) => (
+            <option
+              key={langKey}
+              value={langKey}
+              className="bg-[#818181] text-black
+                checked:bg-[#13131a] checked:text-[#818181]"
+            >
+              {availableLanguages[langKey as keyof LanguageType].originalName}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[76px] py-4 mt-12">
         <div className="flex flex-col justify-center items-center gap-3">
           {navlinks.map((linkItem: NavLinkType) => (

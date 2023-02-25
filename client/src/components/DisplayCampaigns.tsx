@@ -29,6 +29,7 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
       <h1 className="font-epilogue font-semibold text-white text-left">
         {title} ({campaigns.length})
       </h1>
+      
       <div className="flex flex-wrap mt-[20px] gap-[28px]">
         {isLoading && <Loader />}
 
