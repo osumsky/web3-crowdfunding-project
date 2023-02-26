@@ -4,6 +4,7 @@ import {
   useContract,
   useMetamask,
   useContractWrite,
+  useDisconnect,
 } from '@thirdweb-dev/react';
 import { CROWD_PLATFORM_CONTRACT_ADRESS } from '../constants';
 
@@ -13,9 +14,10 @@ import { ExtraCampaignsDetails } from '../pages/Profile';
 import { SmartContract } from '@thirdweb-dev/sdk';
 import { DonationType } from '../pages/CampaignDetails';
 
-type ContextValueType = {
+type BlockchainContextValueType = {
   address: string | undefined;
   contract: SmartContract<BaseContract> | undefined;
+  disconnectWallet: ReturnType<typeof useDisconnect> | undefined;
   connectWallet: ReturnType<typeof useMetamask> | undefined;
   createCampaign: Function;
   getAllCampaigns: Function;
@@ -24,22 +26,12 @@ type ContextValueType = {
   getDonations: Function;
 };
 
-const defaultContext: ContextValueType = {
-  address: undefined,
-  contract: undefined,
-  connectWallet: undefined,
-  createCampaign: () => {},
-  getAllCampaigns: () => [],
-  getUserCampaigns: () => [],
-  makeDonate: () => {},
-  getDonations: () => [],
-};
-
-const StateContext = createContext<ContextValueType>(defaultContext);
-export const useStateContext = (): ContextValueType => useContext(StateContext);
+const BlockchainContext = createContext<BlockchainContextValueType | null>(null);
+export const useBlockchaingContext = (): BlockchainContextValueType =>
+  useContext(BlockchainContext) as BlockchainContextValueType;
 
 // ...OnSC / ...FromSC - on/from smart contract
-export const StateContextProvider: React.FC<React.PropsWithChildren> = ({
+export const BlockchainContextProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const { contract } = useContract(CROWD_PLATFORM_CONTRACT_ADRESS);
@@ -50,6 +42,7 @@ export const StateContextProvider: React.FC<React.PropsWithChildren> = ({
 
   const address = useAddress();
   const connectWallet = useMetamask();
+  const disconnectWallet = useDisconnect();
 
   const createCampaign = async (form: CampaignDetailsType) => {
     try {
@@ -121,11 +114,12 @@ export const StateContextProvider: React.FC<React.PropsWithChildren> = ({
   };
 
   return (
-    <StateContext.Provider
+    <BlockchainContext.Provider
       value={{
         address,
         contract,
         connectWallet,
+        disconnectWallet,
         createCampaign,
         getAllCampaigns,
         getUserCampaigns,
@@ -134,6 +128,6 @@ export const StateContextProvider: React.FC<React.PropsWithChildren> = ({
       }}
     >
       {children}
-    </StateContext.Provider>
+    </BlockchainContext.Provider>
   );
 };

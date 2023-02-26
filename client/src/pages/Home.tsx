@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DisplayCampaigns } from '../components';
-import { useStateContext } from '../context';
+import { useBlockchaingContext } from '../context/BlockchainContext';
 import { ExtraCampaignsDetails } from './Profile';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [campaigns, setCampaigns] = useState<Array<ExtraCampaignsDetails>>([]);
-  const { address, contract, getAllCampaigns } = useStateContext();
+  const { address, contract, getAllCampaigns } = useBlockchaingContext();
   const {t} = useTranslation();
 
   const fetchCampaigns = async () => {

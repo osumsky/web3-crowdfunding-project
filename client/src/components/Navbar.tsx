@@ -1,27 +1,30 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomButton } from './';
-import { menu, search, thirdweb } from '../assets/images';
+import { menu, moon, search, sun, thirdweb } from '../assets/images';
 import { navlinks, NavLinkName, NavLinkType } from '../constants';
 import { getLinkByNavLinkName } from '../utils';
-import { useStateContext } from '../context';
+import { useBlockchaingContext } from '../context/BlockchainContext';
 import { useTranslation } from 'react-i18next';
 import { availableLanguages, LanguageType } from '../i18nextConf';
+import { Themes, useThemeContext } from '../context/ThemeContext';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsAcive] = useState(NavLinkName.Dashbord);
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const { connectWallet, address } = useStateContext();
-  const { t, i18n } = useTranslation();
+  const { connectWallet, address } = useBlockchaingContext();
 
+  const { theme, setTheme } = useThemeContext();
+
+  const { t, i18n } = useTranslation();
   const handleLangSelect = (e: any): void => {
     i18n.changeLanguage(e.target.value);
   };
 
   return (
     // Navbar container
-    <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6" >
+    <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
       {/* Search container */}
       <div className="lg:flex flex flex-row md:max-w-[458px] w-full py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
         <input
@@ -64,7 +67,7 @@ const Navbar = () => {
       </div>
 
       {/* Small screen navigation */}
-      <div className="sm:hidden flex justify-between items-center relative">
+      <div className="sm:hidden flex justify-between items-center relative ">
         {/* Language selection */}
         <div>
           <select
@@ -98,8 +101,10 @@ const Navbar = () => {
             setToggleDrawer((prevState) => !prevState);
           }}
         />
+
+        {/* Burger menu */}
         <div
-          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${
+          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 rounded-xl ${
             !toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'
           } transition-all duration-700`}
         >
@@ -134,6 +139,22 @@ const Navbar = () => {
                 </p>
               </li>
             ))}
+
+            {/* Dark/Light THEMES */}
+
+            <li
+              key={0}
+              className="flex p-4 my-4"
+              onClick={() => {
+                setTheme(theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT);
+                setToggleDrawer(false);
+              }}
+            >
+              <img src={theme === Themes.DARK ? sun : moon} />
+              <p className="ml-[20px] font-epilogue font-semibold text-[14px] capitalize text-[#808191]">
+                Light/Dark Theme
+              </p>
+            </li>
           </ul>
 
           <div className="flex mx-4">

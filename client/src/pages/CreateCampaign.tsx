@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 import { money } from '../assets/images';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
-import { useStateContext } from '../context';
+import { useBlockchaingContext } from '../context/BlockchainContext';
 import { useTranslation } from 'react-i18next';
 
 enum FieldName {
@@ -38,7 +38,7 @@ const CreateCampaign = () => {
   const navigate = useNavigate();
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [form, setForm] = useState<CampaignDetailsType>(defaultForm);
-  const { createCampaign } = useStateContext();
+  const { createCampaign } = useBlockchaingContext();
   const { t } = useTranslation();
 
   const handleSubmit = async (e: React.SyntheticEvent): Promise<any> => {

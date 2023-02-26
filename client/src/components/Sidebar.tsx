@@ -1,9 +1,10 @@
 import { MouseEventHandler, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { navlinks, NavLinkName, NavLinkType } from '../constants';
-import { logo, sun } from '../assets/images';
+import { sun, moon } from '../assets/images';
 import { availableLanguages, LanguageType } from '../i18nextConf';
 import { useTranslation } from 'react-i18next';
+import { Themes, useThemeContext } from '../context/ThemeContext';
 
 type IconPropsType = {
   styles?: string;
@@ -24,6 +25,7 @@ const Icon: React.FC<IconPropsType> = ({
 }) => {
   return (
     <div
+      title={name && name[0].toUpperCase() + name.slice(1)}
       className={`w-[48px] h-[48px] rounded-[10px] ${
         isActive && isActive === name && 'bg-[2c2f32]'
       } flex justify-center items-center
@@ -41,6 +43,8 @@ const Icon: React.FC<IconPropsType> = ({
 const Sidebar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(NavLinkName.Dashbord);
+
+  const { theme, setTheme } = useThemeContext();
 
   const { i18n } = useTranslation();
   const handleLangSelect = (e: any): void => {
@@ -92,10 +96,13 @@ const Sidebar = () => {
           ))}
         </div>
         <Icon
-          styles="bg-[#1c1c24] shadow-secondary"
-          imageUrl={sun}
-          disabled
-          handleClick={() => null}
+          styles="bg-[#1c1c24]"
+          imageUrl={theme === Themes.DARK ? sun : moon}
+          handleClick={() => {
+            const nextTheme =
+              theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT;
+            setTheme(nextTheme);
+          }}
         />
       </div>
     </div>

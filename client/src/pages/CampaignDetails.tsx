@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useStateContext } from '../context';
+import { useBlockchaingContext } from '../context/BlockchainContext';
 import { CustomButton, Loader } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { thirdweb } from '../assets/images';
@@ -19,7 +19,7 @@ export type DonationType = {
 };
 
 const CampaignDetails = () => {
-  const { makeDonate, getDonations, contract, address } = useStateContext();
+  const { makeDonate, getDonations, contract, address } = useBlockchaingContext();
   const { state } = useLocation() as LocationState;
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);

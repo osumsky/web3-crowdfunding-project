@@ -6,6 +6,7 @@ import profile from './profile.svg';
 import withdraw from './withdraw.svg';
 import logo from './logo.svg';
 import sun from './sun.svg';
+import moon from './moon.svg';
 import menu from './menu.svg';
 import search from './search.svg';
 import thirdweb from './thirdweb.png';
@@ -22,6 +23,7 @@ export {
   withdraw,
   logo,
   sun,
+  moon,
   menu,
   search,
   thirdweb,

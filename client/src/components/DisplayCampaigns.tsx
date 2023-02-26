@@ -26,11 +26,20 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
 
   return (
     <div>
-      <h1 className="font-epilogue font-semibold text-white text-left">
+      <h1 className="font-epilogue font-semibold text-white text-left mb-4">
         {title} ({campaigns.length})
       </h1>
-      
-      <div className="flex flex-wrap mt-[20px] gap-[28px]">
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(288px, auto))',
+          justifyContent: 'space-around',
+          rowGap: '20px',
+          gridGap: "20px"
+        }}
+        
+      >
         {isLoading && <Loader />}
 
         {!isLoading && campaigns.length === 0 && (

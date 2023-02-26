@@ -23,7 +23,7 @@ const FundCard: React.FC<FundCampaignsDetails> = ({
 
   return (
     <div
-      className="sm:w-[288px] flex-1 rounded-[16px] bg-[#1c1c24] cursor-pointer"
+      className="rounded-[16px] bg-[#1c1c24] cursor-pointer"
       onClick={handleClick}
     >
       {/* Main image */}
