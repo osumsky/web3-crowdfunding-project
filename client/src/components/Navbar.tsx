@@ -12,10 +12,10 @@ import { Themes, useThemeContext } from '../context/ThemeContext';
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsAcive] = useState(NavLinkName.Dashbord);
-  const [toggleDrawer, setToggleDrawer] = useState(false);
+  const [toggleDrawer, setToggleDrawer] = useState(true);
   const { connectWallet, address } = useBlockchaingContext();
 
-  const { theme, setTheme } = useThemeContext();
+  const { theme, changeTheme } = useThemeContext();
 
   const { t, i18n } = useTranslation();
   const handleLangSelect = (e: any): void => {
@@ -146,7 +146,7 @@ const Navbar = () => {
               key={0}
               className="flex p-4 my-4"
               onClick={() => {
-                setTheme(theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT);
+                changeTheme();
                 setToggleDrawer(false);
               }}
             >

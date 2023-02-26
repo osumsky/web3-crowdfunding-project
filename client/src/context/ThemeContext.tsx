@@ -1,13 +1,13 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export enum Themes {
-  DARK,
-  LIGHT,
+  DARK = 'DARK',
+  LIGHT = 'LIGHT',
 }
 
 type ThemeContextValueType = {
   theme: Themes;
-  setTheme: Function;
+  changeTheme: Function;
 };
 
 const ThemeContext = createContext<ThemeContextValueType | null>(null);
@@ -20,8 +20,28 @@ export const ThemeContextProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [theme, setTheme] = useState(Themes.DARK);
 
+  useEffect(() => {
+    // if set via local storage previously
+    if (localStorage.getItem('color-theme')) {
+      if (localStorage.getItem('color-theme') === Themes.LIGHT) {
+        setTheme(Themes.LIGHT);
+      } else {
+        setTheme(Themes.DARK);
+      }
+      // if NOT set via local storage previously
+    } else {
+      localStorage.setItem('color-theme', theme);
+    }
+  }, []);
+
+  const changeTheme = () => {
+    const nextTheme = theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT;
+    setTheme(nextTheme);
+    localStorage.setItem('color-theme', theme);
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, changeTheme }}>
       {children}
     </ThemeContext.Provider>
   );

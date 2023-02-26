@@ -44,7 +44,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(NavLinkName.Dashbord);
 
-  const { theme, setTheme } = useThemeContext();
+  const { theme, changeTheme } = useThemeContext();
 
   const { i18n } = useTranslation();
   const handleLangSelect = (e: any): void => {
@@ -98,11 +98,7 @@ const Sidebar = () => {
         <Icon
           styles="bg-[#1c1c24]"
           imageUrl={theme === Themes.DARK ? sun : moon}
-          handleClick={() => {
-            const nextTheme =
-              theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT;
-            setTheme(nextTheme);
-          }}
+          handleClick={() => changeTheme()}
         />
       </div>
     </div>
