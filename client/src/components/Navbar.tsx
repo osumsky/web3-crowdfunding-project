@@ -26,14 +26,14 @@ const Navbar = () => {
     // Navbar container
     <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
       {/* Search container */}
-      <div className="lg:flex flex flex-row md:max-w-[458px] w-full py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
+      <div className="lg:flex flex flex-row md:max-w-[458px] w-full py-2 pl-4 pr-2 h-[52px] bg-stone-800 rounded-[100px] dark">
         <input
           type="text"
           placeholder={t('search_for')}
-          className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[$4b5264] text-white bg-transparent outline-none mr-2"
+          className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[$4b5264] text-stone-50 bg-transparent outline-none mr-2"
         />
         {/* Search image container */}
-        <div className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer">
+        <div className="w-[72px] h-full rounded-[20px] bg-emerald-500 flex justify-center items-center cursor-pointer">
           <img src={search} className="w-[16px] h-[16px] object-contain" />
         </div>
       </div>
@@ -43,7 +43,7 @@ const Navbar = () => {
         <CustomButton
           btnType="button"
           title={address ? t('campaign_creation') : t('connect')}
-          styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+          styles={address ? 'bg-emerald-500' : 'bg-indigo-500'}
           handleClick={() => {
             if (address) {
               navigate(getLinkByNavLinkName(NavLinkName.Campaign));
@@ -60,7 +60,7 @@ const Navbar = () => {
             ].link
           }
         >
-          <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center">
+          <div className="w-[52px] h-[52px] rounded-full bg-stone-800 flex justify-center items-center">
             <img src={thirdweb} className="w-[60%] h-[60%] object-contain" />
           </div>
         </Link>
@@ -86,8 +86,8 @@ const Navbar = () => {
               <option
                 key={langKey}
                 value={langKey}
-                className="bg-[#818181] text-black
-                checked:bg-[#13131a] checked:text-[#818181]"
+                className="bg-stone-800 text-stone-400
+                checked:bg-stone-600 checked:text-stone-900"
               >
                 {availableLanguages[langKey as keyof LanguageType].originalName}
               </option>
@@ -104,7 +104,7 @@ const Navbar = () => {
 
         {/* Burger menu */}
         <div
-          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 rounded-xl ${
+          className={`absolute top-[60px] right-0 left-0 bg-stone-900 z-10 shadow-secondary py-4 rounded-xl ${
             !toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'
           } transition-all duration-700`}
         >
@@ -113,7 +113,7 @@ const Navbar = () => {
               <li
                 key={linkItem.name}
                 className={`flex p-4 ${
-                  isActive === linkItem.name && 'bg-[#3a3a43]'
+                  isActive === linkItem.name && 'bg-stone-800'
                 }`}
                 onClick={() => {
                   setIsAcive(linkItem.name);
@@ -131,8 +131,8 @@ const Navbar = () => {
                 <p
                   className={`ml-[20px] font-epilogue font-semibold text-[14px] capitalize ${
                     isActive === linkItem.name
-                      ? 'text-[#1dc071]'
-                      : 'text-[#808191]'
+                      ? 'text-emerald-500'
+                      : 'text-stone-500'
                   }`}
                 >
                   {linkItem.name}
@@ -151,7 +151,7 @@ const Navbar = () => {
               }}
             >
               <img src={theme === Themes.DARK ? sun : moon} />
-              <p className="ml-[20px] font-epilogue font-semibold text-[14px] capitalize text-[#808191]">
+              <p className="ml-[20px] font-epilogue font-semibold text-[14px] capitalize text-stone-500">
                 Light/Dark Theme
               </p>
             </li>
@@ -161,7 +161,7 @@ const Navbar = () => {
             <CustomButton
               btnType="button"
               title={address ? t('campaign_creation') : t('connect')}
-              styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+              styles={address ? 'bg-emerald-500' : 'bg-indigo-500'}
               handleClick={() => {
                 if (address) {
                   navigate(getLinkByNavLinkName(NavLinkName.Campaign));

@@ -71,15 +71,16 @@ const Sidebar = () => {
             <option
               key={langKey}
               value={langKey}
-              className="bg-[#818181] text-black
-                checked:bg-[#13131a] checked:text-[#818181]"
+              className="bg-stone-800 text-stone-400
+              checked:bg-stone-500 checked:text-stone-900"
             >
               {availableLanguages[langKey as keyof LanguageType].originalName}
             </option>
           ))}
         </select>
       </div>
-      <div className="flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[76px] py-4 mt-12">
+
+      <div className="flex-1 flex flex-col justify-between items-center bg-stone-800 rounded-[20px] w-[76px] py-4 mt-12">
         <div className="flex flex-col justify-center items-center gap-3">
           {navlinks.map((linkItem: NavLinkType) => (
             <Icon
@@ -96,7 +97,6 @@ const Sidebar = () => {
           ))}
         </div>
         <Icon
-          styles="bg-[#1c1c24]"
           imageUrl={theme === Themes.DARK ? sun : moon}
           handleClick={() => changeTheme()}
         />

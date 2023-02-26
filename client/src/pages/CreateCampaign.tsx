@@ -67,11 +67,11 @@ const CreateCampaign = () => {
   };
 
   return (
-    <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
+    <div className="bg-stone-800 flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
       {isSaving && <Loader />}
 
-      <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
-        <h1 className="font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">
+      <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-stone-700 rounded-[10px]">
+        <h1 className="font-bold sm:text-[25px] text-[18px] leading-[38px] text-stone-50">
           {t('start_campaign')}
         </h1>
       </div>
@@ -108,9 +108,9 @@ const CreateCampaign = () => {
         />
 
         {/* Money banner */}
-        <div className="w-full flex justify-start items-center rounded-[10px] bg-[#8c6dfd] p-4">
+        <div className="w-full flex justify-start items-center rounded-[10px] bg-indigo-500 p-4">
           <img src={money} className="w-[40px] h-[40px] object-contain" />
-          <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">
+          <h4 className="font-epilogue font-bold text-[25px] text-stone-50 ml-[20px]">
             {t('reward')}
           </h4>
         </div>
@@ -147,7 +147,7 @@ const CreateCampaign = () => {
           <CustomButton
             btnType="submit"
             title={t('submit_campaign')}
-            styles="bg-[#1dc071]"
+            styles="bg-emerald-500"
           />
         </div>
       </form>

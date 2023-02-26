@@ -26,7 +26,7 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
 
   return (
     <div>
-      <h1 className="font-epilogue font-semibold text-white text-left mb-4">
+      <h1 className="font-epilogue font-semibold text-stone-50 text-left mb-4">
         {title} ({campaigns.length})
       </h1>
 
@@ -43,7 +43,7 @@ const DisplayCampaigns: React.FC<DisplayCampaignsType> = ({
         {isLoading && <Loader />}
 
         {!isLoading && campaigns.length === 0 && (
-          <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818181]">
+          <p className="font-epilogue font-semibold text-[14px] leading-[30px] textstone-500">
             {t('no_campaigns')}
           </p>
         )}
