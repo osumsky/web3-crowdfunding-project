@@ -26,15 +26,15 @@ const Navbar = () => {
     // Navbar container
     <div className="md:flex-row flex flex-col-reverse justify-between mb-[35px] gap-6">
       {/* Search container */}
-      <div className="lg:flex flex flex-row md:max-w-[458px] w-full py-2 pl-4 pr-2 h-[52px] bg-stone-800 rounded-[100px] dark">
+      <div className="lg:flex flex flex-row md:max-w-[458px] w-full py-2 pl-4 pr-2 h-[52px] bg-stone-300 dark:bg-stone-800 rounded-[100px]">
         <input
           type="text"
           placeholder={t('search_for')}
-          className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[$4b5264] text-stone-50 bg-transparent outline-none mr-2"
+          className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-stone-500 text-stone-900 dark:text-stone-50 bg-transparent outline-none mr-2"
         />
         {/* Search image container */}
-        <div className="w-[72px] h-full rounded-[20px] bg-emerald-500 flex justify-center items-center cursor-pointer">
-          <img src={search} className="w-[16px] h-[16px] object-contain" />
+        <div className="w-[72px] h-full rounded-[20px] dark:bg-emerald-500 bg-emerald-300 flex justify-center items-center cursor-pointer">
+          <img src={search} className="w-[16px] h-[16px] object-contain invert" />
         </div>
       </div>
 
@@ -43,7 +43,7 @@ const Navbar = () => {
         <CustomButton
           btnType="button"
           title={address ? t('campaign_creation') : t('connect')}
-          styles={address ? 'bg-emerald-500' : 'bg-indigo-500'}
+          styles={address ? 'dark:bg-emerald-500 bg-emerald-300' : 'dark:bg-indigo-500 bg-indigo-300'}
           handleClick={() => {
             if (address) {
               navigate(getLinkByNavLinkName(NavLinkName.Campaign));
@@ -60,16 +60,16 @@ const Navbar = () => {
             ].link
           }
         >
-          <div className="w-[52px] h-[52px] rounded-full bg-stone-800 flex justify-center items-center">
+          <div className="w-[52px] h-[52px] rounded-full bg-stone-300 dark:bg-stone-800 flex justify-center items-center">
             <img src={thirdweb} className="w-[60%] h-[60%] object-contain" />
           </div>
         </Link>
       </div>
 
       {/* Small screen navigation */}
-      <div className="sm:hidden flex justify-between items-center relative ">
+      <div className="sm:hidden flex justify-between items-center relative">
         {/* Language selection */}
-        <div>
+        <div className="w-[52px] h-[52px] rounded-full bg-stone-300 dark:bg-stone-800 flex justify-center items-center">
           <select
             className="w-[40px] h-[40px] px-2 rounded-full text-transparent appearance-none cursor-pointer"
             style={{
@@ -104,7 +104,7 @@ const Navbar = () => {
 
         {/* Burger menu */}
         <div
-          className={`absolute top-[60px] right-0 left-0 bg-stone-900 z-10 shadow-secondary py-4 rounded-xl ${
+          className={`absolute top-[60px] right-0 left-0 dark:bg-stone-900 bg-stone-300 z-10 shadow-secondary py-4 rounded-xl ${
             !toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'
           } transition-all duration-700`}
         >
@@ -113,7 +113,7 @@ const Navbar = () => {
               <li
                 key={linkItem.name}
                 className={`flex p-4 ${
-                  isActive === linkItem.name && 'bg-stone-800'
+                  isActive === linkItem.name && 'dark:bg-stone-800 bg-stone-50'
                 }`}
                 onClick={() => {
                   setIsAcive(linkItem.name);
@@ -132,7 +132,7 @@ const Navbar = () => {
                   className={`ml-[20px] font-epilogue font-semibold text-[14px] capitalize ${
                     isActive === linkItem.name
                       ? 'text-emerald-500'
-                      : 'text-stone-500'
+                      : 'dark:text-stone-500 text-stone-800'
                   }`}
                 >
                   {linkItem.name}
@@ -141,7 +141,6 @@ const Navbar = () => {
             ))}
 
             {/* Dark/Light THEMES */}
-
             <li
               key={0}
               className="flex p-4 my-4"
@@ -151,7 +150,7 @@ const Navbar = () => {
               }}
             >
               <img src={theme === Themes.DARK ? sun : moon} />
-              <p className="ml-[20px] font-epilogue font-semibold text-[14px] capitalize text-stone-500">
+              <p className="ml-[20px] font-epilogue font-semibold text-[14px] capitalize dark:text-stone-500 text-stone-800">
                 Light/Dark Theme
               </p>
             </li>
@@ -161,7 +160,7 @@ const Navbar = () => {
             <CustomButton
               btnType="button"
               title={address ? t('campaign_creation') : t('connect')}
-              styles={address ? 'bg-emerald-500' : 'bg-indigo-500'}
+              styles={address ? 'dark:bg-emerald-500 bg-emerald-300' : 'dark:bg-indigo-500 bg-indigo-300'}
               handleClick={() => {
                 if (address) {
                   navigate(getLinkByNavLinkName(NavLinkName.Campaign));

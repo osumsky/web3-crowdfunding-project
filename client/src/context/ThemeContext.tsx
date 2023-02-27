@@ -37,7 +37,7 @@ export const ThemeContextProvider: React.FC<React.PropsWithChildren> = ({
   const changeTheme = () => {
     const nextTheme = theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT;
     setTheme(nextTheme);
-    localStorage.setItem('color-theme', theme);
+    localStorage.setItem('color-theme', nextTheme);
   };
 
   return (

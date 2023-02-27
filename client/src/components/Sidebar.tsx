@@ -27,7 +27,7 @@ const Icon: React.FC<IconPropsType> = ({
     <div
       title={name && name[0].toUpperCase() + name.slice(1)}
       className={`w-[48px] h-[48px] rounded-[10px] ${
-        isActive && isActive === name && 'bg-[2c2f32]'
+        isActive && isActive === name && 'bg-stone-50 dark:bg-stone-900'
       } flex justify-center items-center
       ${!disabled && 'cursor-pointer'} ${styles}`}
       onClick={handleClick}
@@ -54,7 +54,7 @@ const Sidebar = () => {
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
       {/* Language selection */}
-      <div>
+      <div className="w-[52px] h-[52px] rounded-full bg-stone-300 dark:bg-stone-800 flex justify-center items-center">
         <select
           className="w-[40px] h-[40px] px-2 rounded-full text-transparent appearance-none cursor-pointer"
           style={{
@@ -80,7 +80,7 @@ const Sidebar = () => {
         </select>
       </div>
 
-      <div className="flex-1 flex flex-col justify-between items-center bg-stone-800 rounded-[20px] w-[76px] py-4 mt-12">
+      <div className="flex-1 flex flex-col justify-between items-center bg-stone-300 dark:bg-stone-800 rounded-[20px] w-[76px] py-4 mt-12">
         <div className="flex flex-col justify-center items-center gap-3">
           {navlinks.map((linkItem: NavLinkType) => (
             <Icon
@@ -97,6 +97,7 @@ const Sidebar = () => {
           ))}
         </div>
         <Icon
+          styles="bg-stone-50 dark:bg-stone-900"
           imageUrl={theme === Themes.DARK ? sun : moon}
           handleClick={() => changeTheme()}
         />
