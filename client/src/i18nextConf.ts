@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import englishTranslation from './assets/translations/en.json';
 import spanishTranslation from './assets/translations/es.json';
 import ukrainianTranslation from './assets/translations/uk.json';
+import { enFlag, esFlag, ukFlag } from './assets/images';
 
 // !!! DO NOT FORGET TO IMPORT this file in App.tsx or main.tsx
 
@@ -23,14 +24,20 @@ export type LanguageType = {
   [key in Languages]: { originalName: string; image: string };
 };
 export const availableLanguages: LanguageType = {
-  [Languages.EN]: { originalName: 'English', image: '/src/assets/images/en.png' },
-  [Languages.UK]: { originalName: 'Українська', image: '/src/assets/images/uk.png' },
-  [Languages.ES]: { originalName: 'Español', image: '/src/assets/images/es.png' },
+  [Languages.EN]: { originalName: 'English', image: `${enFlag}` },
+  [Languages.UK]: {
+    originalName: 'Українська',
+    image: `${ukFlag}`,
+  },
+  [Languages.ES]: {
+    originalName: 'Español',
+    image: `${esFlag}`,
+  },
 };
 
 i18n.use(initReactI18next).init({
   fallbackLng: Languages.EN,
-  lng: Languages.ES,
+  lng: Languages.EN,
   returnNull: false,
 
   resources: {

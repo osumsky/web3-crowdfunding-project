@@ -22,7 +22,7 @@ const FormField: React.FC<FormFieldType> = ({
   return (
     <label className="flex-1 w-full flex flex-col">
       {labelName && (
-        <span className="font-epilogue font-medium text-[14px] leading-[22px] dark:text-stone-300 text-stone-900 mb-[10px]">
+        <span className=" font-medium text-[14px] leading-[22px] dark:text-stone-300 text-stone-900 mb-[10px]">
           {labelName}
         </span>
       )}
@@ -33,7 +33,7 @@ const FormField: React.FC<FormFieldType> = ({
           onChange={handleChange}
           rows={10}
           placeholder={placeholder}
-          className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] dark:border-stone-500 border-stone-400 focus:dark:border-stone-50 focus:border-stone-900 bg-transparent font-epilogue dark:text-stone-50 text-stone-900 text-[14px] placeholder:text-stone-500 rounded-[10px] sm:min-w-[300px]"
+          className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] dark:border-stone-500 border-stone-400 focus:dark:border-stone-50 focus:border-stone-900 bg-transparent  dark:text-stone-50 text-stone-900 text-[14px] placeholder:text-stone-500 rounded-[10px] sm:min-w-[300px]"
         />
       ) : (
         <input
@@ -44,7 +44,7 @@ const FormField: React.FC<FormFieldType> = ({
           step="0.1"
           min="0"
           placeholder={placeholder}
-          className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] dark:border-stone-500 border-stone-400 focus:dark:border-stone-50 focus:border-stone-900 bg-transparent font-epilogue dark:text-stone-50 text-stone-900 text-[14px] placeholder:text-stone-500 rounded-[10px] sm:min-w-[300px]"
+          className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] dark:border-stone-500 border-stone-400 focus:dark:border-stone-50 focus:border-stone-900 bg-transparent  dark:text-stone-50 text-stone-900 text-[14px] placeholder:text-stone-500 rounded-[10px] sm:min-w-[300px]"
         />
       )}
     </label>

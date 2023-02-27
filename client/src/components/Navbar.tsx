@@ -30,7 +30,7 @@ const Navbar = () => {
         <input
           type="text"
           placeholder={t('search_for')}
-          className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-stone-500 text-stone-900 dark:text-stone-50 bg-transparent outline-none mr-2"
+          className="flex w-full  font-normal text-[14px] placeholder:text-stone-500 text-stone-900 dark:text-stone-50 bg-transparent outline-none mr-2"
         />
         {/* Search image container */}
         <div className="w-[72px] h-full rounded-[20px] dark:bg-emerald-500 bg-emerald-300 flex justify-center items-center cursor-pointer">
@@ -86,8 +86,10 @@ const Navbar = () => {
               <option
                 key={langKey}
                 value={langKey}
-                className="bg-stone-800 text-stone-400
-                checked:bg-stone-600 checked:text-stone-900"
+                className="dark:bg-stone-800 dark:text-stone-400
+                checked:dark:bg-stone-600 checked:dark:text-stone-900                
+                bg-stone-300 text-stone-900
+                checked:bg-stone-600 checked:text-stone-200"
               >
                 {availableLanguages[langKey as keyof LanguageType].originalName}
               </option>
@@ -129,13 +131,13 @@ const Navbar = () => {
                 />
 
                 <p
-                  className={`ml-[20px] font-epilogue font-semibold text-[14px] capitalize ${
+                  className={`ml-[20px]  font-semibold text-[14px] capitalize ${
                     isActive === linkItem.name
                       ? 'text-emerald-500'
                       : 'dark:text-stone-500 text-stone-800'
                   }`}
                 >
-                  {linkItem.name}
+                  {t(`${linkItem.name}`)}
                 </p>
               </li>
             ))}
@@ -150,8 +152,8 @@ const Navbar = () => {
               }}
             >
               <img src={theme === Themes.DARK ? sun : moon} />
-              <p className="ml-[20px] font-epilogue font-semibold text-[14px] capitalize dark:text-stone-500 text-stone-800">
-                Light/Dark Theme
+              <p className="ml-[20px]  font-semibold text-[14px] capitalize dark:text-stone-500 text-stone-800">
+                {theme === Themes.DARK ? t('light_theme') : t('dark_theme')}
               </p>
             </li>
           </ul>

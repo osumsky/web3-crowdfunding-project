@@ -1,4 +1,9 @@
 {
+  "campaign": "campaña",
+  "profile": "perfil",
+  "dashboard": "tablero",
+  "light_theme": "Modo diurno",
+  "dark_theme": "Modo nocturno",
   "campaign_creation": "Crear campaña",
   "connect": "Conectar cartera",
   "search_for": "Buscar campañas",
@@ -19,7 +24,6 @@
   "submit_campaign": "Crear nueva campaña",
   "raised_of": "Recibido de",
   "days_left": "Días restantes",
-
   "total_backers": "Patrocinadores totales",
   "creator": "Creador",
   "donators": "Donantes",
@@ -27,5 +31,7 @@
   "fund": "Financiar",
   "fund_campaign": "Financiar la campaña",
   "back_it": "Apóyala porque crees en élla.",
-  "support_project": "Apoya el proyecto sin recompensa, solo porque te habla."
+  "support_project": "Apoya el proyecto sin recompensa, solo porque te habla.",
+  "connect_wallet": "Conecte la cartera primero",
+  "valid_url": "Proporcione una URL de imagen válida"
 }

@@ -41,22 +41,25 @@ const CreateCampaign = () => {
   const { createCampaign } = useBlockchaingContext();
   const { t } = useTranslation();
 
+  const { address } = useBlockchaingContext();
   const handleSubmit = async (e: React.SyntheticEvent): Promise<any> => {
     e.preventDefault();
-    checkIfImage(form.image, async (exists: boolean) => {
-      if (exists) {
-        setIsSaving(true);
-        await createCampaign({
-          ...form,
-          target: ethers.utils.parseUnits(form.target, 18),
-        });
-        setIsSaving(false);
-        navigate('/');
-      } else {
-        alert('Provide valid image URL');
-        setForm({ ...form, [FieldName.image]: '' });
-      }
-    });
+    if (address)
+      checkIfImage(form.image, async (exists: boolean) => {
+        if (exists) {
+          setIsSaving(true);
+          await createCampaign({
+            ...form,
+            target: ethers.utils.parseUnits(form.target, 18),
+          });
+          setIsSaving(false);
+          navigate('/');
+        } else {
+          alert(t('valid_url'));
+          setForm({ ...form, [FieldName.image]: '' });
+        }
+      });
+    else alert(t('connect_wallet'));
   };
 
   const handleFormFieldChange = (
@@ -110,7 +113,7 @@ const CreateCampaign = () => {
         {/* Money banner */}
         <div className="w-full flex justify-start items-center rounded-[10px] dark:bg-indigo-500 bg-indigo-600 p-4">
           <img src={money} className="w-[40px] h-[40px] object-contain" />
-          <h4 className="font-epilogue font-bold text-[25px] text-stone-50 ml-[20px]">
+          <h4 className=" font-bold text-[25px] text-stone-50 ml-[20px]">
             {t('reward')}
           </h4>
         </div>
@@ -146,8 +149,12 @@ const CreateCampaign = () => {
         <div className="flex justify-center items-center mt-[40px]">
           <CustomButton
             btnType="submit"
+            styles={
+              address
+                ? 'dark:bg-emerald-500 bg-emerald-300'
+                : 'dark:bg-stone-500 bg-stone-100'
+            }
             title={t('submit_campaign')}
-            styles="dark:bg-emerald-500 bg-emerald-300"
           />
         </div>
       </form>

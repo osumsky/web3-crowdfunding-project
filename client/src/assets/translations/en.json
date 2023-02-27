@@ -1,4 +1,9 @@
 {
+  "campaign": "campaign",
+  "profile": "profile",
+  "dashboard": "dashboard",
+  "light_theme": "Light Theme",
+  "dark_theme": "Dark Theme",
   "campaign_creation": "Create campaign",
   "connect": "Connect wallet",
   "search_for": "Search for campaigns",
@@ -26,5 +31,7 @@
   "fund": "Fund",
   "fund_campaign": "Fund the campaign",
   "back_it": "Back it because you believe in it.",
-  "support_project": "Support the project for no reward, just because it speaks to you."
+  "support_project": "Support the project for no reward, just because it speaks to you.",
+  "connect_wallet": "Connect wallet first",
+  "valid_url": "Provide valid image URL"
 }

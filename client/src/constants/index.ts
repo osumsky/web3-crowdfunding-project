@@ -1,10 +1,7 @@
 import {
   createCampaign,
   dashboard,
-  logout,
-  payment,
   profile,
-  withdraw,
 } from '../assets/images';
 
 export type NavLinkType = {
@@ -17,10 +14,7 @@ export type NavLinkType = {
 export enum NavLinkName {
   Dashbord = 'dashboard',
   Campaign = 'campaign',
-  Payment = 'payment',
-  Withdraw = 'withdraw',
   Profile = 'profile',
-  Logout = 'logout',
 }
 
 export const navlinks: Array<NavLinkType> = [

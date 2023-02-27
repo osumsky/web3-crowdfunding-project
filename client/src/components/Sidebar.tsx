@@ -71,8 +71,10 @@ const Sidebar = () => {
             <option
               key={langKey}
               value={langKey}
-              className="bg-stone-800 text-stone-400
-              checked:bg-stone-500 checked:text-stone-900"
+              className="dark:bg-stone-800 dark:text-stone-400
+                checked:dark:bg-stone-600 checked:dark:text-stone-900                
+                bg-stone-300 text-stone-900
+                checked:bg-stone-600 checked:text-stone-200"
             >
               {availableLanguages[langKey as keyof LanguageType].originalName}
             </option>

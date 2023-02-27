@@ -84,7 +84,7 @@ const CampaignDetails = () => {
       <div className="mt-[60px] flex lg:flex-row flex-col gap-5">
         <div className="flex-[2] flex flex-col gap-[40px]">
           <div>
-            <h4 className="font-epilogue font-semibold text-[18px] dark:text-stone-50 text-stone-900 uppercase">
+            <h4 className=" font-semibold text-[18px] dark:text-stone-50 text-stone-900 uppercase">
               {t('creator')}
             </h4>
             <div className="mt-[20px] flex flex-row items-center flex-wrap gap-[14px]">
@@ -95,10 +95,10 @@ const CampaignDetails = () => {
                 />
               </div>
               <div>
-                <h4 className="font-epilogue font-semibold text-[14px] dark:text-stone-50 text-stone-800 break-all">
+                <h4 className=" font-semibold text-[14px] dark:text-stone-50 text-stone-800 break-all">
                   {state.owner}
                 </h4>
-                <p className="font-epilogue font-normal text-[12px] text-stone-500">
+                <p className=" font-normal text-[12px] text-stone-500">
                   10 campaign
                 </p>
               </div>
@@ -106,18 +106,18 @@ const CampaignDetails = () => {
           </div>
 
           <div>
-            <h4 className="font-epilogue font-semibold text-[18px] dark:text-stone-50 text-stone-800 uppercase">
+            <h4 className=" font-semibold text-[18px] dark:text-stone-50 text-stone-800 uppercase">
               {t('story')}
             </h4>
             <div className="mt-[20px]">
-              <p className="font-epilogue font-normal text-[16px] dark:text-stone-50 text-stone-800 leading-[26px] text-justify">
+              <p className=" font-normal text-[16px] dark:text-stone-50 text-stone-800 leading-[26px] text-justify">
                 {state.description}
               </p>
             </div>
           </div>
 
           <div>
-            <h4 className="font-epilogue font-semibold text-[18px] dark:text-stone-50 text-stone-800 uppercase">
+            <h4 className=" font-semibold text-[18px] dark:text-stone-50 text-stone-800 uppercase">
               {t('donators')}
             </h4>
             <div className="mt-[20px] flex flex-col gap-4">
@@ -127,16 +127,16 @@ const CampaignDetails = () => {
                     key={`${item.donator}-${index}`}
                     className="flex justify-between items-center gap-4"
                   >
-                    <p className="font-epilogue font-normal text-[16px] dark:text-stone-300 text-stone-800 leading-[24px] break-all">
+                    <p className=" font-normal text-[16px] dark:text-stone-300 text-stone-800 leading-[24px] break-all">
                       {index + 1}. {item.donator}
                     </p>
-                    <p className="font-epilogue font-normal text-[16px] dark:text-stone-300 text-stone-800 leading-[24px] break-all">
+                    <p className=" font-normal text-[16px] dark:text-stone-300 text-stone-800 leading-[24px] break-all">
                       {`${item.donation} ETH`}
                     </p>
                   </div>
                 ))
               ) : (
-                <p className="font-epilogue font-normal text-[16px] dark:text-stone-500 text-stone-800 leading-[26px] text-justify">
+                <p className=" font-normal text-[16px] dark:text-stone-500 text-stone-800 leading-[26px] text-justify">
                   {t('no_donators')}
                 </p>
               )}
@@ -145,7 +145,7 @@ const CampaignDetails = () => {
         </div>
 
         <div className="flex-1">
-          <h4 className="font-epilogue font-semibold text-[18px] dark:text-stone-50 text-stone-800 uppercase">
+          <h4 className=" font-semibold text-[18px] dark:text-stone-50 text-stone-800 uppercase">
             {t('fund')}
           </h4>
           <div className="mt-[20px] flex flex-col p-4 dark:bg-stone-800 bg-stone-300 rounded-[10px]">
@@ -157,17 +157,17 @@ const CampaignDetails = () => {
                 type="number"
                 placeholder="ETH 0.0001"
                 step="0.0001"
-                className="w-full py-[10px] sm:px-[20px] px-[16px] outline-none border-[1px] dark:border-stone-600 border-stone-400 bg-transparent font-epilogue dark:text-stone-50 dark:focus:border-stone-50 text-stone-900 focus:border-stone-900
+                className="w-full py-[10px] sm:px-[20px] px-[16px] outline-none border-[1px] dark:border-stone-600 border-stone-400 bg-transparent  dark:text-stone-50 dark:focus:border-stone-50 text-stone-900 focus:border-stone-900
               text-[18px] leading-[30px] placeholder:text-stone-600 rounded-[10px]"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
 
               <div className="my-[20px] p-4 dark:bg-stone-900 bg-stone-100 rounded-[10px]">
-                <h4 className="font-epilogue font-semibold text-[14px] leading-[20px] dark:text-stone-50 text-stone-800">
+                <h4 className=" font-semibold text-[14px] leading-[20px] dark:text-stone-50 text-stone-800">
                   {t('back_it')}
                 </h4>
-                <p className="mt-[20px] font-epilogue font-normal leading-[20px] dark:text-stone-400 text-stone-600">
+                <p className="mt-[20px]  font-normal leading-[20px] dark:text-stone-400 text-stone-600">
                   {t('support_project')}
                 </p>
               </div>

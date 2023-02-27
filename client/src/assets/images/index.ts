@@ -13,6 +13,9 @@ import thirdweb from './thirdweb.png';
 import money from './money.svg';
 import loader from './loader.svg';
 import tagType from './tag-type.svg';
+import enFlag from './en.png'
+import esFlag from './es.png'
+import ukFlag from './uk.png'
 
 export {
   createCampaign,
@@ -29,5 +32,8 @@ export {
   thirdweb,
   money,
   loader,
-  tagType
+  tagType,
+  enFlag,
+  esFlag,
+  ukFlag
 };
